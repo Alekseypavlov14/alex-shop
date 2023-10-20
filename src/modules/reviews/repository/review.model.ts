@@ -1,7 +1,8 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose"
+import { ReviewEntity } from "../review.entity"
 
-const reviewSchema = new Schema({
-  id: { type: String, required: true },
+const reviewSchema = new Schema<ReviewEntity>({
+  id: { type: String, required: true, unique: true },
   rating: { type: Number, required: true },
   userId: { type: String, required: true },
   productId: { type: String, required: true }

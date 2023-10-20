@@ -24,15 +24,14 @@ export class ReviewMongoRepository implements ReviewRepository {
   }
 
   async updateById(id: string, updatedData: Partial<ReviewEntity>) {
-    const reviewCandidate = await ReviewModel.updateOne<ReviewEntity>({ id }, updatedData).findOne({ id })
+    const reviewCandidate = await ReviewModel.findOneAndUpdate<ReviewEntity>({ id }, updatedData)
     if (!reviewCandidate) throw new Error()
     return reviewCandidate
   }
 
   async deleteById(id: string) {
-    const reviewCandidate = await ReviewModel.findOne<ReviewEntity>({ id })
+    const reviewCandidate = await ReviewModel.findOneAndDelete<ReviewEntity>({ id })
     if (!reviewCandidate) throw new Error()
-    await ReviewModel.deleteOne({ id })
     return reviewCandidate
   }
 }

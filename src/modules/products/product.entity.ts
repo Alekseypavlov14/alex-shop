@@ -5,6 +5,5 @@ export interface ProductEntity {
   name: string
   description: string
   rating: number
-  userId: Id
   categoryId: Id
 }

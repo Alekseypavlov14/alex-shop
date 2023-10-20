@@ -1,4 +1,4 @@
-import { UserRepository } from "./user.repository.interface"
+import { UserRepository } from "./user.repository"
 import { UserCreateDTO } from "./dto/user.create"
 import { generateId } from "@/shared/utils/generateId"
 import { UserEntity } from "../user.entity"
@@ -7,7 +7,7 @@ import { Id } from "@/shared/types/Id"
 
 export class UserMongoRepository implements UserRepository {
   async getAll() {
-    return await UserModel.find() as UserEntity[]
+    return await UserModel.find<UserEntity>()
   }
 
   async getById(id: Id) {
@@ -22,15 +22,14 @@ export class UserMongoRepository implements UserRepository {
   }
 
   async updateById(id: Id, updatedData: Partial<UserEntity>) {
-    const userCandidate = await UserModel.updateOne<UserEntity>({ id }, updatedData).findOne({ id })
+    const userCandidate = await UserModel.findOneAndUpdate<UserEntity>({ id }, updatedData)
     if (!userCandidate) throw new Error()
     return userCandidate
   }
 
   async deleteById(id: Id) {
-    const userCandidate = await UserModel.findOne<UserEntity>({ id })
+    const userCandidate = await UserModel.findOneAndDelete<UserEntity>({ id })
     if (!userCandidate) throw new Error()
-    await UserModel.deleteOne({ id })
     return userCandidate
   }
 }

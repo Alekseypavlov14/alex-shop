@@ -6,8 +6,7 @@ export interface ProductRepository {
   getAll: () => Promise<ProductEntity[]>
   getById: (id: Id) => Promise<ProductEntity>
   getByCategoryId: (id: Id) => Promise<ProductEntity[]>
-  getByUserId: (id: Id) => Promise<ProductEntity[]>
   create: (productCreateDTO: ProductCreateDTO) => Promise<ProductEntity>
-  updateById: (id: Id) => Promise<ProductEntity>
+  updateById: (id: Id, updatedData: Partial<ProductEntity>) => Promise<ProductEntity>
   deleteById: (id: Id) => Promise<ProductEntity>
 }
