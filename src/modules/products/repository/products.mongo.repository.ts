@@ -1,6 +1,7 @@
 import { ProductRepository } from "./products.repository"
 import { ProductCreateDTO } from "./dto/product.create"
 import { ProductEntity } from "../product.entity"
+import { HTTPException } from "@/shared/http-exceptions"
 import { ProductModel } from "./product.model"
 import { generateId } from "@/shared/utils/generateId"
 import { Id } from '@/shared/types/Id'
@@ -12,7 +13,7 @@ export class ProductMongoRepository implements ProductRepository {
 
   async getById(id: Id) {
     const productCandidate = await ProductModel.findOne<ProductEntity>({ id })
-    if (!productCandidate) throw new Error()
+    if (!productCandidate) throw new HTTPException(404)
     return productCandidate
   }
 
@@ -27,17 +28,18 @@ export class ProductMongoRepository implements ProductRepository {
       id: generateId() 
     }
     return await ProductModel.create<ProductEntity>(productData)
+      .catch(() => {throw new HTTPException(400)})
   }
   
   async updateById(id: Id, updatedData: Partial<ProductEntity>) {
     const productCandidate = await ProductModel.findOneAndUpdate<ProductEntity>({ id }, updatedData)
-    if (!productCandidate) throw new Error()
+    if (!productCandidate) throw new HTTPException(404)
     return productCandidate
   }
 
   async deleteById(id: Id) {
     const productCandidate = await ProductModel.findOneAndDelete({ id })
-    if (!productCandidate) throw new Error()
+    if (!productCandidate) throw new HTTPException(404)
     return productCandidate
   }
 }
