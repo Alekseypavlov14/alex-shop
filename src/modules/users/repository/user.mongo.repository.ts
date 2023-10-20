@@ -17,6 +17,12 @@ export class UserMongoRepository implements UserRepository {
     return userCandidate
   }
 
+  async getByLogin(login: string) {
+    const userCandidate = await UserModel.findOne<UserEntity>({ login })
+    if (!userCandidate) throw new HTTPException(404)
+    return userCandidate
+  }
+
   async create(userCreateDTO: UserCreateDTO) {
     const userData: UserEntity = { ...userCreateDTO, id: generateId() }
     return await UserModel.create<UserEntity>(userData)

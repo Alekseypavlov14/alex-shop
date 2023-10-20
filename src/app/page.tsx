@@ -1,5 +1,8 @@
+'use client'
 import React from "react"
 
 export default function Page() {
-  return <h1>Hello, Next.js!</h1>
+  function clickHandler() {}
+
+  return <button onClick={clickHandler}>Click</button>
 }

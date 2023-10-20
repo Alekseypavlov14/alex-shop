@@ -1,0 +1,2 @@
+export const USER_MINIMUM_LOGIN_LENGTH = 4
+export const USER_MINIMUM_PASSWORD_LENGTH = 4
