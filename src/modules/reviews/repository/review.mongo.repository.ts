@@ -14,7 +14,7 @@ export class ReviewMongoRepository implements ReviewRepository {
   }
 
   async getByProductId(id: Id) {
-    const reviewCandidate = await ReviewModel.findOne<ReviewEntity>({ productId: id })
+    const reviewCandidate = await ReviewModel.find<ReviewEntity>({ productId: id })
     if (!reviewCandidate) throw new HTTPException(404)
     return reviewCandidate
   }
@@ -22,7 +22,7 @@ export class ReviewMongoRepository implements ReviewRepository {
   async create(reviewCreateDTO: ReviewCreateDTO) {
     const reviewData: ReviewEntity = { ...reviewCreateDTO, id: generateId() }
     return await ReviewModel.create<ReviewEntity>(reviewData)
-      .catch(() => {throw new HTTPException(400)})
+      .catch(() => {throw new HTTPException(400)}) as ReviewEntity
   }
 
   async updateById(id: string, updatedData: Partial<ReviewEntity>) {

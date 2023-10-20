@@ -28,7 +28,7 @@ export class ProductMongoRepository implements ProductRepository {
       id: generateId() 
     }
     return await ProductModel.create<ProductEntity>(productData)
-      .catch(() => {throw new HTTPException(400)})
+      .catch(() => {throw new HTTPException(400)}) as ProductEntity
   }
   
   async updateById(id: Id, updatedData: Partial<ProductEntity>) {
@@ -38,7 +38,7 @@ export class ProductMongoRepository implements ProductRepository {
   }
 
   async deleteById(id: Id) {
-    const productCandidate = await ProductModel.findOneAndDelete({ id })
+    const productCandidate = await ProductModel.findOneAndDelete<ProductEntity>({ id })
     if (!productCandidate) throw new HTTPException(404)
     return productCandidate
   }

@@ -20,17 +20,17 @@ export class CategoryMongoRepository implements CategoryRepository {
   async create(categoryCreateDTO: CategoryCreateDTO) {
     const categoryData: CategoryEntity = { ...categoryCreateDTO, id: generateId() }
     return await CategoryModel.create<CategoryEntity>(categoryData)
-      .catch(() => {throw new HTTPException(400)})
+      .catch(() => {throw new HTTPException(400)}) as CategoryEntity
   }
 
   async updateById(id: Id, updatedData: Partial<CategoryEntity>) {
-    const categoryCandidate = await CategoryModel.findOneAndUpdate({ id}, updatedData)
+    const categoryCandidate = await CategoryModel.findOneAndUpdate<CategoryEntity>({ id }, updatedData)
     if (!categoryCandidate) throw new HTTPException(404)
     return categoryCandidate
   }
 
   async deleteById(id: Id) {
-    const categoryCandidate = await CategoryModel.findOneAndDelete({ id })
+    const categoryCandidate = await CategoryModel.findOneAndDelete<CategoryEntity>({ id })
     if (!categoryCandidate) throw new HTTPException(404)
     return categoryCandidate
   }

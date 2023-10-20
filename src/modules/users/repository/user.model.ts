@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import { Schema, models, model } from 'mongoose'
 import { UserEntity } from '../user.entity'
 
 const userSchema = new Schema<UserEntity>({
@@ -7,4 +7,4 @@ const userSchema = new Schema<UserEntity>({
   password: { type: String, required: true }
 })
 
-export const UserModel = model('User', userSchema)
+export const UserModel = models.User || model('User', userSchema)

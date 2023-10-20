@@ -1,5 +1,5 @@
+import { Schema, models, model } from "mongoose"
 import { CommentEntity } from "../comment.entity"
-import { Schema, model } from "mongoose"
 
 const commentSchema = new Schema<CommentEntity>({
   id: { type: String, required: true, unique: true },
@@ -9,4 +9,4 @@ const commentSchema = new Schema<CommentEntity>({
   productId: { type: String, required: true },
 })
 
-export const CommentModel = model<CommentEntity>('Comment', commentSchema)
+export const CommentModel = models.Comment || model<CommentEntity>('Comment', commentSchema)

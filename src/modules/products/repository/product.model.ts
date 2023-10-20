@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose"
+import { Schema, model, models } from "mongoose"
 import { ProductEntity } from "../product.entity"
 
 const productSchema = new Schema<ProductEntity>({
@@ -9,4 +9,4 @@ const productSchema = new Schema<ProductEntity>({
   categoryId: { type: String, required: true }
 })
 
-export const ProductModel = model('Product', productSchema)
+export const ProductModel = models.Product || model('Product', productSchema)

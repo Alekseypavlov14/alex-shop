@@ -24,18 +24,18 @@ export class CommentMongoRepository implements CommentRepository {
   async create(commentCreateDTO: CommentCreateDTO) {
     const commentData: CommentEntity = { ...commentCreateDTO, id: generateId() }
     return await CommentModel.create<CommentEntity>(commentData)
-      .catch(() => {throw new HTTPException(400)})
+      .catch(() => {throw new HTTPException(400)}) as CommentEntity
   }
 
   async updateById(id: Id, updatedData: Partial<CommentEntity>) {
-    const commentCandidate = await CommentModel.findOneAndUpdate({ id }, updatedData);
+    const commentCandidate = await CommentModel.findOneAndUpdate<CommentEntity>({ id }, updatedData)
     if (!commentCandidate) throw new HTTPException(404)
-    return commentCandidate;
+    return commentCandidate
   }
 
   async deleteById(id: Id) {
-    const commentCandidate = await CommentModel.findOneAndDelete({ id });
+    const commentCandidate = await CommentModel.findOneAndDelete<CommentEntity>({ id })
     if (!commentCandidate) throw new HTTPException(404)
-    return commentCandidate;
+    return commentCandidate
   }
 }

@@ -20,7 +20,7 @@ export class UserMongoRepository implements UserRepository {
   async create(userCreateDTO: UserCreateDTO) {
     const userData: UserEntity = { ...userCreateDTO, id: generateId() }
     return await UserModel.create<UserEntity>(userData)
-      .catch(() => {throw new HTTPException(400)})
+      .catch(() => {throw new HTTPException(400)}) as UserEntity
   }
 
   async updateById(id: Id, updatedData: Partial<UserEntity>) {

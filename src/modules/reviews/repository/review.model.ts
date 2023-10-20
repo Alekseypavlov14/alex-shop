@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose"
+import { Schema, models, model } from "mongoose"
 import { ReviewEntity } from "../review.entity"
 
 const reviewSchema = new Schema<ReviewEntity>({
@@ -8,4 +8,4 @@ const reviewSchema = new Schema<ReviewEntity>({
   productId: { type: String, required: true }
 })
 
-export const ReviewModel = model('Review', reviewSchema)
+export const ReviewModel = models.Review || model('Review', reviewSchema)
