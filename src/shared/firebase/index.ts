@@ -1,0 +1,1 @@
+export { initializeFirebaseApp } from './initializeFirebaseApp'
