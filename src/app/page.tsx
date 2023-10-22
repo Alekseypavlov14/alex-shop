@@ -2,7 +2,7 @@
 import React from "react"
 
 export default function Page() {
-  function clickHandler() {}
+  async function clickHandler() {}
 
   return <button onClick={clickHandler}>Click</button>
 }

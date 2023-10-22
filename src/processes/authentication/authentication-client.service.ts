@@ -1,8 +1,8 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
+import { HTTPException, httpService } from '@/services/http'
 import { AuthenticationCredentials } from "./types/authentication-credentials"
 import { initializeFirebaseApp } from '@/shared/firebase'
 import { generatePassword } from './utils/generate-password'
-import { HTTPException } from '@/services/http'
 import { UserCreateDTO } from "@/modules/users"
 import { LocalStorage } from "@/shared/utils/localStorage"
 
@@ -64,6 +64,14 @@ export class AuthenticationClientService implements AuthenticationClientServiceI
     return this.authenticationStorage.getValue()
   }
 
-  private signInRequest: (userCreateDTO: UserCreateDTO) => Promise<AuthenticationCredentials>
-  private signUpRequest: (userCreateDTO: UserCreateDTO) => Promise<AuthenticationCredentials>
+  private async signInRequest(userCreateDTO: UserCreateDTO) {
+    return await httpService.post<UserCreateDTO, AuthenticationCredentials>(
+      '/api/authentication/sign-in', userCreateDTO
+    )
+  }
+  private async signUpRequest(userCreateDTO: UserCreateDTO) {
+    return await httpService.post<UserCreateDTO, AuthenticationCredentials>(
+      '/api/authentication/sign-up', userCreateDTO
+    )
+  }
 }
