@@ -42,11 +42,13 @@ export class AuthenticationServerService implements AuthenticationServerServiceI
     // validate user data
     if (!validateUserData(userCreateDTO)) throw new HTTPException(400)
 
-    // check if user exists
-    const userCandidate = await userRepository.getByLogin(userCreateDTO.login)
-
-    // if user exists throw conflict exception
-    if (userCandidate) throw new HTTPException(409)
+    try {
+      // Try Catch is needed because userRepository.getByLogin() must throw an error is user is not found
+      const userCandidate = await userRepository.getByLogin(userCreateDTO.login)
+      
+      // if user exists throw conflict exception
+      if (userCandidate) throw new HTTPException(409)
+    } catch(e) {}
 
     // hash password
     const passwordHash = await hash(userCreateDTO.password, HASH_SALT)
@@ -61,13 +63,16 @@ export class AuthenticationServerService implements AuthenticationServerServiceI
   }
 
   async validateAuthenticationCredentials(userAuthCredentials: AuthenticationCredentials) {
-    const { login, passwordHash } = userAuthCredentials
+    try {
+      const { login, passwordHash } = userAuthCredentials
 
-    const userCandidate = await userRepository.getByLogin(login)
-    if (!userCandidate) return false
+      const userCandidate = await userRepository.getByLogin(login)
+      
+      if (userCandidate.password !== passwordHash) return false
 
-    if (userCandidate.password !== passwordHash) return false
-
-    return true
+      return true
+    } catch(e) {
+      return false
+    }
   } 
 }
