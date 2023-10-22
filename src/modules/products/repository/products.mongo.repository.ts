@@ -1,7 +1,7 @@
 import { ProductRepository } from "./products.repository"
 import { ProductCreateDTO } from "./dto/product.create"
 import { ProductEntity } from "../product.entity"
-import { HTTPException } from "@/shared/http-exceptions"
+import { HTTPException } from "@/services/http"
 import { ProductModel } from "./product.model"
 import { generateId } from "@/shared/utils/generateId"
 import { Id } from '@/shared/types/Id'

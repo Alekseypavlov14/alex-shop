@@ -2,7 +2,7 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
 import { AuthenticationCredentials } from "./types/authentication-credentials"
 import { initializeFirebaseApp } from '@/shared/firebase'
 import { generatePassword } from './utils/generate-password'
-import { HTTPException } from '@/shared/http-exceptions'
+import { HTTPException } from '@/services/http'
 import { UserCreateDTO } from "@/modules/users"
 import { LocalStorage } from "@/shared/utils/localStorage"
 

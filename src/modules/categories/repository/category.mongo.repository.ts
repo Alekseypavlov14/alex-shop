@@ -1,7 +1,7 @@
 import { CategoryRepository } from "./category.repository"
 import { CategoryCreateDTO } from "./dto/category.create"
 import { CategoryEntity } from "../category.entity"
-import { HTTPException } from "@/shared/http-exceptions"
+import { HTTPException } from "@/services/http"
 import { CategoryModel } from './category.model'
 import { generateId } from "@/shared/utils/generateId"
 import { Id } from '@/shared/types/Id'

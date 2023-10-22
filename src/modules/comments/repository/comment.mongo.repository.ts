@@ -1,6 +1,6 @@
 import { CommentRepository } from './comment.repository'
 import { CommentCreateDTO } from './dto/comment.create'
-import { HTTPException } from '@/shared/http-exceptions'
+import { HTTPException } from '@/services/http'
 import { CommentEntity } from '../comment.entity'
 import { CommentModel } from './comment.model'
 import { generateId } from '@/shared/utils/generateId'

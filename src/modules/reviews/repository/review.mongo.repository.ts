@@ -1,6 +1,6 @@
 import { ReviewRepository } from './review.repository'
 import { ReviewCreateDTO } from './dto/review.create'
-import { HTTPException } from '@/shared/http-exceptions'
+import { HTTPException } from '@/services/http'
 import { ReviewEntity } from './../review.entity'
 import { ReviewModel } from './review.model'
 import { generateId } from '@/shared/utils/generateId'

@@ -3,7 +3,7 @@ import { AuthenticationCredentials } from "./types/authentication-credentials"
 import { mapUserDataToCredentials } from "./utils/map-user-data-to-credentials"
 import { validateUserData } from "./utils/validate-user-data"
 import { connectDatabase } from "@/shared/utils/connectDatabase"
-import { HTTPException } from "@/shared/http-exceptions"
+import { HTTPException } from "@/services/http"
 import { compare, hash } from 'bcrypt'
 import { HASH_SALT } from "@/shared/constants/database"
 

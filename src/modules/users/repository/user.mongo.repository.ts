@@ -1,6 +1,6 @@
 import { UserRepository } from "./user.repository"
 import { UserCreateDTO } from "./dto/user.create"
-import { HTTPException } from "@/shared/http-exceptions"
+import { HTTPException } from "@/services/http"
 import { generateId } from "@/shared/utils/generateId"
 import { UserEntity } from "../user.entity"
 import { UserModel } from "./user.model"
