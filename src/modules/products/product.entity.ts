@@ -6,4 +6,5 @@ export interface ProductEntity {
   description: string
   rating: number
   categoryId: Id
+  imagePath: string
 }
