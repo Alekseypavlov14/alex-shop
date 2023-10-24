@@ -20,6 +20,7 @@
   "author": "Oleksii Pavlov <aleshapavlov9@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.5.1",
     "bcrypt": "^5.1.1",
     "firebase": "^10.5.0",
     "mongoose": "^7.6.3",
