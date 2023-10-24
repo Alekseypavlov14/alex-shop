@@ -1,3 +1,6 @@
 .next
 node_modules
 .env
+
+# /files directory is used to upload files
+files 
