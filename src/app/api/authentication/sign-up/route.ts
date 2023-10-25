@@ -1,9 +1,14 @@
 import { authenticationServerService } from "@/processes/authentication/server"
 import { NextRequest, NextResponse } from "next/server"
+import { generateErrorResponse } from "@/services/http"
 import { UserCreateDTO } from "@/modules/users"
 
 export async function POST(req: NextRequest) {
-  const userCreateDTO = await req.json() as UserCreateDTO
-  const authCredentials = await authenticationServerService.signUpUser(userCreateDTO)
-  return NextResponse.json(authCredentials)
+  try {
+    const userCreateDTO = await req.json() as UserCreateDTO
+    const authCredentials = await authenticationServerService.signUpUser(userCreateDTO)
+    return NextResponse.json(authCredentials)
+  } catch(error) {
+    return generateErrorResponse(error)
+  }
 } 
