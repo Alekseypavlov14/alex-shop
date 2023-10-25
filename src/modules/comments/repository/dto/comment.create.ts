@@ -1,8 +1,3 @@
-import { Id } from "@/shared/types/Id"
+import { CommentEntity } from "../../comment.entity"
 
-export interface CommentCreateDTO {
-  content: string
-  rating: number
-  userId: Id
-  productId: Id
-}
+export interface CommentCreateDTO extends Omit<CommentEntity, 'id'> {}

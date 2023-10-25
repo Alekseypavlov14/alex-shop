@@ -1,4 +1,3 @@
-export interface UserCreateDTO {
-  login: string
-  password: string
-}
+import { UserEntity } from "../../user.entity"
+
+export interface UserCreateDTO extends Omit<UserEntity, 'id'> {}

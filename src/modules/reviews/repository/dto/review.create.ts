@@ -1,7 +1,3 @@
-import { Id } from "@/shared/types/Id"
+import { ReviewEntity } from "../../review.entity"
 
-export interface ReviewCreateDTO {
-  rating: number
-  userId: Id
-  productId: Id
-}
+export interface ReviewCreateDTO extends Omit<ReviewEntity, 'id'> {}
