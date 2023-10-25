@@ -1,13 +1,13 @@
 import { ProductCreateDTO, ProductEntity, productRepository } from "@/modules/products"
-import { fileUploadService } from "@/services/file-upload"
 import { connectDatabase } from "@/shared/utils/connectDatabase"
+import { fileService } from "@/services/file"
 import { ProductData } from "../types/product-data"
 
 export async function createProduct(productData: ProductData): Promise<ProductEntity> {
   await connectDatabase()
 
   const productImage = productData.image 
-  const productImagePath = fileUploadService.createFilePath(productData.image)
+  const productImagePath = fileService.createFilePath(productData.image)
 
   const productCreateDTO: ProductCreateDTO = {
     name: productData.name,
@@ -18,7 +18,7 @@ export async function createProduct(productData: ProductData): Promise<ProductEn
 
   const product = await productRepository.create(productCreateDTO)
 
-  await fileUploadService.uploadFile(productImagePath, productImage)  
+  await fileService.uploadFile(productImagePath, productImage)  
 
   return product
 }
