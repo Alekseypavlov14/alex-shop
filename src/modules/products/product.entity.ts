@@ -4,6 +4,7 @@ export interface ProductEntity {
   id: Id
   name: string
   description: string
+  price: number
   rating: number
   categoryId: Id
   imagePath: string

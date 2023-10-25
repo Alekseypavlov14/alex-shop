@@ -1,8 +1,3 @@
-import { Id } from "@/shared/types/Id"
+import { ProductEntity } from "../../product.entity"
 
-export interface ProductCreateDTO {
-  name: string
-  description: string
-  categoryId: Id
-  imagePath: string
-}
+export interface ProductCreateDTO extends Omit<ProductEntity, 'id' | 'rating'> {}

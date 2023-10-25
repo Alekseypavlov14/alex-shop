@@ -1,4 +1,5 @@
 export const productNameInputName = 'name'
 export const productDescriptionInputName = 'description'
+export const productPriceInputName = 'price'
 export const productCategoryIdInputName = 'category-id'
 export const productImageInputName = 'image'

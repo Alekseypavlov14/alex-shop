@@ -1,5 +1,5 @@
-import { createProduct, mapFormDataToProductData, validateProductData } from "@/processes/create-product/server"
 import { NextRequest, NextResponse } from "next/server"
+import { createProduct } from "@/processes/create-product/server"
 
 export async function GET() {
   return NextResponse.json({ success: true })
@@ -7,12 +7,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const formData = await request.formData()
-  
-  const productData = mapFormDataToProductData(formData)
-  if (!validateProductData(productData)) return NextResponse.json({}, { status: 400 })
-
-  const product = await createProduct(productData)
-    
+  const product = await createProduct(formData)
   return NextResponse.json(product)
 }
 

@@ -1,6 +1,5 @@
-export interface ProductData {
-  name: string
-  description: string
-  categoryId: string
+import { ProductCreateDTO } from "@/modules/products"
+
+export interface ProductData extends Omit<ProductCreateDTO, 'imagePath'> {
   image: File
 }
