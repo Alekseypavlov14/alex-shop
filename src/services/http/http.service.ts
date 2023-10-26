@@ -1,4 +1,3 @@
-import { HTTPException } from "./http.exception"
 import { RequestHeaders } from "./types/request-headers"
 import axios, { AxiosRequestConfig } from 'axios'
 
@@ -11,7 +10,8 @@ export interface HTTPServiceInterface {
 
 export class HTTPService implements HTTPServiceInterface {
   private readonly requestConfig: AxiosRequestConfig = {
-    validateStatus: (status) => status >= 200 && status < 400
+    validateStatus: (status) => status >= 200 && status < 400,
+    withCredentials: true
   }
 
   async get<Result>(url: string, headers?: RequestHeaders): Promise<Result> {
