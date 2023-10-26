@@ -6,4 +6,4 @@ const categorySchema = new Schema<CategoryEntity>({
   name: { type: String, unique: true, required: true }
 })
 
-export const CategoryModel = models.Category || model<CategoryEntity>('Category', categorySchema)
+export const CategoryModel = models?.Category || model<CategoryEntity>('Category', categorySchema)

@@ -4,7 +4,7 @@ import { mapUserDataToCredentials } from "./utils/map-user-data-to-credentials"
 import { validateUserData } from "./utils/validate-user-data"
 import { connectDatabase } from "@/shared/utils/connectDatabase"
 import { HTTPException } from "@/services/http"
-import { compare, hash } from 'bcrypt'
+import { compare, hash } from 'bcryptjs'
 import { HASH_SALT } from "@/shared/constants/database"
 
 export interface AuthenticationServerServiceInterface {
@@ -64,6 +64,8 @@ export class AuthenticationServerService implements AuthenticationServerServiceI
 
   async validateAuthenticationCredentials(userAuthCredentials: AuthenticationCredentials) {
     try {
+      await connectDatabase()
+
       const { login, passwordHash } = userAuthCredentials
 
       const userCandidate = await userRepository.getByLogin(login)

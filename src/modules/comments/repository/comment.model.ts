@@ -9,4 +9,4 @@ const commentSchema = new Schema<CommentEntity>({
   productId: { type: String, required: true },
 })
 
-export const CommentModel = models.Comment || model<CommentEntity>('Comment', commentSchema)
+export const CommentModel = models?.Comment || model<CommentEntity>('Comment', commentSchema)

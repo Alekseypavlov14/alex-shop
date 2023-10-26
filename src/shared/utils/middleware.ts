@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from "next/server"
 
 export type MiddlewareCallback = (req: NextRequest, res: NextResponse) => NextResponse | Promise<NextResponse>
 
-export interface MiddlewareConfig {
+export interface Middleware {
   routes: string[],
   callback: MiddlewareCallback
 }
 
-export function combineMiddlewares(middlewares: MiddlewareConfig[]): MiddlewareCallback {
+export function combineMiddlewares(middlewares: Middleware[]): MiddlewareCallback {
   return (req: NextRequest, res: NextResponse) => {
     // set default response
     let response: ReturnType<MiddlewareCallback> = NextResponse.next()

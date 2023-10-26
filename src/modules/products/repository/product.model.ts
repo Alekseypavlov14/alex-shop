@@ -11,4 +11,4 @@ const productSchema = new Schema<ProductEntity>({
   imagePath: { type: String, required: true }
 })
 
-export const ProductModel = models.Product || model('Product', productSchema)
+export const ProductModel = models?.Product || model('Product', productSchema)

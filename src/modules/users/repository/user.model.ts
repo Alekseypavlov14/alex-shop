@@ -7,4 +7,4 @@ const userSchema = new Schema<UserEntity>({
   password: { type: String, required: true }
 })
 
-export const UserModel = models.User || model('User', userSchema)
+export const UserModel = models?.User || model('User', userSchema)

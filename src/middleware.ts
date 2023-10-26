@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
-import { combineMiddlewares } from "./shared/utils/middleware"
+import { authenticationMiddleware } from "@/processes/authentication/middleware"
+import { combineMiddlewares } from "@/shared/utils/middleware"
 
-const middlewareCallback = combineMiddlewares([])
+const middlewareCallback = combineMiddlewares([
+  authenticationMiddleware
+])
 
 export async function middleware(req: NextRequest, res: NextResponse) {
   return await middlewareCallback(req, res)

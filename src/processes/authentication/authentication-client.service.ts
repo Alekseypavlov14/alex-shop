@@ -10,7 +10,6 @@ export interface AuthenticationClientServiceInterface {
   signInWithLoginAndPassword: (userCreateDTO: UserCreateDTO) => Promise<void>
   singUpWithLoginAndPassword: (userCreateDTO: UserCreateDTO) => Promise<void>
   signInWithGoogle: () => Promise<void>
-  getCredentials: () => AuthenticationCredentials | null
 }
 
 export class AuthenticationClientService implements AuthenticationClientServiceInterface {
@@ -58,10 +57,6 @@ export class AuthenticationClientService implements AuthenticationClientServiceI
       const authCredentials = await this.signInRequest(userCreateDTO)
       this.authenticationStorage.setValue(authCredentials)
     }
-  }
-
-  getCredentials() {
-    return this.authenticationStorage.getValue()
   }
 
   private async signInRequest(userCreateDTO: UserCreateDTO) {

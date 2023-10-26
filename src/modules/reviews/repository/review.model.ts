@@ -8,4 +8,4 @@ const reviewSchema = new Schema<ReviewEntity>({
   productId: { type: String, required: true }
 })
 
-export const ReviewModel = models.Review || model('Review', reviewSchema)
+export const ReviewModel = models?.Review || model('Review', reviewSchema)
