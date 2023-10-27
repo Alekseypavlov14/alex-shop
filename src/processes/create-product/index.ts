@@ -1,0 +1,1 @@
+export type { ProductData } from './types/product-data'

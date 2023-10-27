@@ -42,23 +42,13 @@ export class AuthenticationServerService implements AuthenticationServerServiceI
     // validate user data
     if (!validateUserData(userCreateDTO)) throw new HTTPException(400)
 
-    try {
-      // Try Catch is needed because userRepository.getByLogin() must throw an error is user is not found
-      const userCandidate = await userRepository.getByLogin(userCreateDTO.login)
-      
-      // if user exists throw conflict exception
-      if (userCandidate) throw new HTTPException(409)
-    } catch(e) {}
-
-    // hash password
     const passwordHash = await hash(userCreateDTO.password, HASH_SALT)
-
-    // save in database
     const preparedUserData: UserCreateDTO = { ...userCreateDTO, password: passwordHash }
+
     const user = await userRepository.create(preparedUserData)
+      .catch(() => {throw new HTTPException(409)})
 
     const authenticationCredentials = mapUserDataToCredentials(user)
-
     return authenticationCredentials
   }
 

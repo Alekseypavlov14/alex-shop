@@ -7,7 +7,7 @@ interface ProductsClientServiceInterface {
   getAll: () => Promise<ProductEntity[]>
   getById: (id: Id) => Promise<ProductEntity>
   getByCategoryId: (id: Id) => Promise<ProductEntity[]>
-  create: (productCreateDTO: ProductCreateDTO) => Promise<ProductEntity>
+  create: (productFormData: FormData) => Promise<ProductEntity>
   updateById: (id: Id, productData: Partial<ProductCreateDTO>) => Promise<ProductEntity>
   deleteById: (id: Id) => Promise<ProductEntity>
 }
@@ -25,8 +25,10 @@ class ProductsClientService implements ProductsClientServiceInterface {
     return await httpService.get<ProductEntity[]>(`/api/products/category/${id}`)
   }
   
-  async create(productCreateDTO: ProductCreateDTO) {
-    return await httpService.post<ProductCreateDTO, ProductEntity>('/api/products', productCreateDTO)
+  async create(productFormData: FormData) {
+    return await httpService.post<FormData, ProductEntity>('/api/products', productFormData, { 
+      'Content-Type': 'multipart/form-data'
+    })
   }
   
   async updateById(id: string, productData: Partial<ProductEntity>) {
@@ -35,7 +37,7 @@ class ProductsClientService implements ProductsClientServiceInterface {
   
   async deleteById(id: string) {
     return await httpService.delete<ProductEntity>(`/api/products/${id}`)
-  }  
+  }
 }
 
 export const productsClientService = new ProductsClientService()
