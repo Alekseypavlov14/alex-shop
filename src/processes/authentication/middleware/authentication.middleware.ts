@@ -1,4 +1,4 @@
-import { loginCookieName, passwordCookieName } from "./constants"
+import { loginCookieName, passwordCookieName } from "../constants"
 import { NextRequest, NextResponse } from "next/server"
 import { Middleware } from "@/shared/utils/middleware"
 

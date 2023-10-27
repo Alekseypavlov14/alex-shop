@@ -1,9 +1,9 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
-import { loginCookieName, passwordCookieName } from './constants'
+import { loginCookieName, passwordCookieName } from '../constants'
 import { HTTPException, httpService } from '@/services/http'
-import { AuthenticationCredentials } from "./types/authentication-credentials"
+import { AuthenticationCredentials } from "../types/authentication-credentials"
 import { initializeFirebaseApp } from '@/shared/firebase'
-import { generatePassword } from './utils/generate-password'
+import { generatePassword } from '../utils/generate-password'
 import { cookiesService } from '@/services/cookies'
 import { UserCreateDTO } from "@/modules/users/server"
 

@@ -1,1 +1,1 @@
-export { authenticationMiddleware } from './../authentication.middleware'
+export { authenticationMiddleware } from './authentication.middleware'
