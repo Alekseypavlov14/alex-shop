@@ -7,6 +7,6 @@ export interface UserRepository {
   getById: (id: Id) => Promise<UserEntity>
   getByLogin: (login: string) => Promise<UserEntity>
   create: (userCreateDTO: UserCreateDTO) => Promise<UserEntity>
-  updateById: (id: Id, updatedData: Partial<UserEntity>) => Promise<UserEntity>
+  updateById: (id: Id, updatedData: Partial<UserCreateDTO>) => Promise<UserEntity>
   deleteById: (id: Id) => Promise<UserEntity>
 }

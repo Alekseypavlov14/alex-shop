@@ -6,6 +6,6 @@ export interface CommentRepository {
   getById: (id: Id) => Promise<CommentEntity>
   getByProductId: (id: Id) => Promise<CommentEntity[]>
   create: (commentCreateDTO: CommentCreateDTO) => Promise<CommentEntity>
-  updateById: (id: Id, updatedData: Partial<CommentEntity>) => Promise<CommentEntity>
+  updateById: (id: Id, updatedData: Partial<CommentCreateDTO>) => Promise<CommentEntity>
   deleteById: (id: Id) => Promise<CommentEntity>
 }

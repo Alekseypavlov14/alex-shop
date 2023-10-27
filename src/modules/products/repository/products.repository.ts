@@ -7,6 +7,6 @@ export interface ProductRepository {
   getById: (id: Id) => Promise<ProductEntity>
   getByCategoryId: (id: Id) => Promise<ProductEntity[]>
   create: (productCreateDTO: ProductCreateDTO) => Promise<ProductEntity>
-  updateById: (id: Id, updatedData: Partial<ProductEntity>) => Promise<ProductEntity>
+  updateById: (id: Id, updatedData: Partial<ProductCreateDTO>) => Promise<ProductEntity>
   deleteById: (id: Id) => Promise<ProductEntity>
 }

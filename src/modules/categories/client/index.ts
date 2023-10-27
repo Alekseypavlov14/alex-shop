@@ -1,0 +1,1 @@
+export { categoriesClientService } from './categories.service'

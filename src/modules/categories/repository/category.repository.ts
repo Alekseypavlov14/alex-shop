@@ -6,6 +6,6 @@ export interface CategoryRepository {
   getAll: () => Promise<CategoryEntity[]>
   getById: (id: Id) => Promise<CategoryEntity>
   create: (categoryCreateDTO: CategoryCreateDTO) => Promise<CategoryEntity>
-  updateById: (id: Id, updatedData: Partial<CategoryEntity>) => Promise<CategoryEntity>
+  updateById: (id: Id, updatedData: Partial<CategoryCreateDTO>) => Promise<CategoryEntity>
   deleteById: (id: Id) => Promise<CategoryEntity>
 }

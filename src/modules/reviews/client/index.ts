@@ -1,0 +1,1 @@
+export { reviewsClientService } from './reviews.service'

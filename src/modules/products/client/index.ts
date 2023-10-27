@@ -1,0 +1,1 @@
+export { productsClientService } from './products.service'

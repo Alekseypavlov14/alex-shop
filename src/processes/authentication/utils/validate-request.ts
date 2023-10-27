@@ -1,5 +1,5 @@
 import { loginCookieName, passwordCookieName } from "../constants"
-import { authenticationServerService } from "../authentication-server.service"
+import { authenticationServerService } from "../authentication.server.service"
 import { AuthenticationCredentials } from "../types/authentication-credentials"
 import { HTTPException } from "@/services/http"
 import { NextRequest } from "next/server"
