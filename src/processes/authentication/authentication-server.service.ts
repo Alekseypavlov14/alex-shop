@@ -78,3 +78,5 @@ export class AuthenticationServerService implements AuthenticationServerServiceI
     }
   } 
 }
+
+export const authenticationServerService = new AuthenticationServerService()

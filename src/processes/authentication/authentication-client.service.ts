@@ -64,3 +64,5 @@ export class AuthenticationClientService implements AuthenticationClientServiceI
     cookiesService.set(passwordCookieName, authCredentials.passwordHash)
   }
 }
+
+export const authenticationClientService = new AuthenticationClientService()

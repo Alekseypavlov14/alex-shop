@@ -23,8 +23,10 @@ export class CookiesService implements CookiesServiceInterface {
   set(key: string, value: string, options?: CookieSetOptions) {
     const keyValueSection = `${key}=${value}`
 
+    const now = new DateTime()
     const expirationTime: TimeData = options?.expires || this.defaultExpirationTime
-    const expiresSection = `expires=${DateTime.mapTimeDataToDate(expirationTime)}`
+    const expirationMoment = now.getDateTimeAfter(expirationTime)
+    const expiresSection = `expires=${DateTime.mapTimeDataToDate(expirationMoment.getTimeData())}`
 
     const pathSection = options?.path ? `path=${options?.path}` : 'path=/'
 
