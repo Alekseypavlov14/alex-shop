@@ -20,13 +20,13 @@ export class CookiesService implements CookiesServiceInterface {
     return searchedCookiePair.split('=')[1]
   }
 
-  set(key: string, value: string, options: CookieSetOptions) {
+  set(key: string, value: string, options?: CookieSetOptions) {
     const keyValueSection = `${key}=${value}`
 
-    const expirationTime: TimeData = options.expires || this.defaultExpirationTime
+    const expirationTime: TimeData = options?.expires || this.defaultExpirationTime
     const expiresSection = `expires=${DateTime.mapTimeDataToDate(expirationTime)}`
 
-    const pathSection = options.path ? `path=${options.path}` : 'path=/'
+    const pathSection = options?.path ? `path=${options?.path}` : 'path=/'
 
     document.cookie = `${keyValueSection}; ${expiresSection}; ${pathSection};`
   }

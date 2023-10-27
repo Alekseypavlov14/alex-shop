@@ -1,10 +1,11 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
+import { loginCookieName, passwordCookieName } from './constants'
 import { HTTPException, httpService } from '@/services/http'
 import { AuthenticationCredentials } from "./types/authentication-credentials"
 import { initializeFirebaseApp } from '@/shared/firebase'
 import { generatePassword } from './utils/generate-password'
+import { cookiesService } from '@/services/cookies'
 import { UserCreateDTO } from "@/modules/users"
-import { LocalStorage } from "@/shared/utils/localStorage"
 
 export interface AuthenticationClientServiceInterface {
   signInWithLoginAndPassword: (userCreateDTO: UserCreateDTO) => Promise<void>
@@ -13,34 +14,25 @@ export interface AuthenticationClientServiceInterface {
 }
 
 export class AuthenticationClientService implements AuthenticationClientServiceInterface {
-  private authenticationStorage = new LocalStorage<AuthenticationCredentials>('authentication')
   private googleAuthenticationProvider = new GoogleAuthProvider()
 
   async signInWithLoginAndPassword(userCreateDTO: UserCreateDTO) {
-    // work with database
     const userAuthCredentials = await this.signInRequest(userCreateDTO)
-
-    // save credentials locally
-    this.authenticationStorage.setValue(userAuthCredentials)
+    this.saveCredentialsInCookies(userAuthCredentials)
   }
   
   async singUpWithLoginAndPassword(userCreateDTO: UserCreateDTO) {
-    // work with database
     const userAuthCredentials = await this.signUpRequest(userCreateDTO)
-
-    // save credentials locally
-    this.authenticationStorage.setValue(userAuthCredentials)
+    this.saveCredentialsInCookies(userAuthCredentials)
   }
 
   async signInWithGoogle() {
-    // initialize firebase app
     initializeFirebaseApp() 
 
     // sign in using Google Authentication API
     const userCredentials = await signInWithPopup(getAuth(), this.googleAuthenticationProvider)
     const userDisplayName = userCredentials.user.displayName
 
-    // if error happened during authentication
     if (!userDisplayName) throw new HTTPException(401)
 
     const userCreateDTO: UserCreateDTO = { 
@@ -49,13 +41,9 @@ export class AuthenticationClientService implements AuthenticationClientServiceI
     }
 
     try {
-      // try to sign up new user after google authentication
-      const authCredentials = await this.signUpRequest(userCreateDTO)
-      this.authenticationStorage.setValue(authCredentials) 
+      this.singUpWithLoginAndPassword(userCreateDTO)
     } catch(e) {
-      // if user is already exists - sign in
-      const authCredentials = await this.signInRequest(userCreateDTO)
-      this.authenticationStorage.setValue(authCredentials)
+      this.signInWithLoginAndPassword(userCreateDTO)
     }
   }
 
@@ -64,9 +52,15 @@ export class AuthenticationClientService implements AuthenticationClientServiceI
       '/api/authentication/sign-in', userCreateDTO
     )
   }
+
   private async signUpRequest(userCreateDTO: UserCreateDTO) {
     return await httpService.post<UserCreateDTO, AuthenticationCredentials>(
       '/api/authentication/sign-up', userCreateDTO
     )
+  }
+  
+  private saveCredentialsInCookies(authCredentials: AuthenticationCredentials) {
+    cookiesService.set(loginCookieName, authCredentials.login)
+    cookiesService.set(passwordCookieName, authCredentials.passwordHash)
   }
 }
