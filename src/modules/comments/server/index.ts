@@ -1,0 +1,1 @@
+export { commentRepository, type CommentRepository, type CommentCreateDTO } from '../repository'

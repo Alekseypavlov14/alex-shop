@@ -5,7 +5,7 @@ import { AuthenticationCredentials } from "./types/authentication-credentials"
 import { initializeFirebaseApp } from '@/shared/firebase'
 import { generatePassword } from './utils/generate-password'
 import { cookiesService } from '@/services/cookies'
-import { UserCreateDTO } from "@/modules/users"
+import { UserCreateDTO } from "@/modules/users/server"
 
 export interface AuthenticationClientServiceInterface {
   signInWithLoginAndPassword: (userCreateDTO: UserCreateDTO) => Promise<void>

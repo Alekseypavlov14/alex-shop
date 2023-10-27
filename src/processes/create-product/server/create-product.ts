@@ -1,7 +1,8 @@
-import { ProductCreateDTO, ProductEntity, productRepository } from "@/modules/products"
+import { ProductCreateDTO, productRepository } from "@/modules/products/server"
 import { mapFormDataToProductData } from "../utils/map-form-data-to-product-data"
 import { validateProductData } from "../utils/validate-product-data"
 import { connectDatabase } from "@/shared/utils/connectDatabase"
+import { ProductEntity } from "@/modules/products"
 import { HTTPException } from "@/services/http"
 import { fileService } from "@/services/file"
 

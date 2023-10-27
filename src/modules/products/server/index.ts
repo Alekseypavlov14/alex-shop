@@ -1,0 +1,1 @@
+export { productRepository, type ProductCreateDTO, type ProductRepository } from '../repository'

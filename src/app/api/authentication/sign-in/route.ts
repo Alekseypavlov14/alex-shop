@@ -1,7 +1,7 @@
 import { authenticationServerService } from "@/processes/authentication/server"
 import { NextRequest, NextResponse } from "next/server"
 import { generateErrorResponse } from "@/services/http"
-import { UserCreateDTO } from "@/modules/users"
+import { UserCreateDTO } from "@/modules/users/server"
 
 export async function POST(req: NextRequest) {
   try {   
