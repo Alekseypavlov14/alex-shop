@@ -31,8 +31,8 @@ export class ProductMongoRepository implements ProductRepository {
       .catch(() => {throw new HTTPException(400)}) as ProductEntity
   }
   
-  async updateById(id: Id, updatedData: Partial<ProductEntity>) {
-    const productCandidate = await ProductModel.findOneAndUpdate<ProductEntity>({ id }, updatedData)
+  async updateById(id: Id, productData: Partial<ProductEntity>) {
+    const productCandidate = await ProductModel.findOneAndUpdate<ProductEntity>({ id }, productData)
     if (!productCandidate) throw new HTTPException(404)
     return productCandidate
   }
