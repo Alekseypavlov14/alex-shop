@@ -1,5 +1,5 @@
 import { UserCreateDTO } from "../repository"
-import { httpService } from "@/services/http"
+import { httpService } from "@/services/http/client"
 import { UserEntity } from "../user.entity"
 import { Id } from "@/shared/types/Id"
 

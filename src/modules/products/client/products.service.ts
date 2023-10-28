@@ -1,6 +1,6 @@
 import { ProductCreateDTO } from "../repository"
 import { ProductEntity } from "../product.entity"
-import { httpService } from "@/services/http"
+import { httpService } from "@/services/http/client"
 import { Id } from "@/shared/types/Id"
 
 interface ProductsClientServiceInterface {

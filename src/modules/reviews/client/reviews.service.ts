@@ -1,6 +1,6 @@
 import { ReviewCreateDTO } from "../repository"
 import { ReviewEntity } from "../review.entity"
-import { httpService } from "@/services/http"
+import { httpService } from "@/services/http/client"
 import { Id } from "@/shared/types/Id"
 
 interface ReviewsClientServiceInterface {

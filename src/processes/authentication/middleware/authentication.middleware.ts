@@ -1,5 +1,6 @@
 import { loginCookieName, passwordCookieName } from "../constants"
 import { NextRequest, NextResponse } from "next/server"
+import { protectedRoutes } from "@/configs/protected-routes"
 import { Middleware } from "@/shared/utils/middleware"
 
 // This middleware only checks cookies and returns authentication error if cookies are undefined. 
@@ -17,6 +18,6 @@ async function authenticationMiddlewareCallback(req: NextRequest) {
 }
 
 export const authenticationMiddleware: Middleware = {
-  routes: ['/api/products'],
+  routes: protectedRoutes,
   callback: authenticationMiddlewareCallback
 }

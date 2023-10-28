@@ -1,14 +1,14 @@
-import { RequestHeaders } from "./types/request-headers"
+import { RequestHeaders } from "../types/request-headers"
 import axios, { AxiosRequestConfig } from 'axios'
 
-export interface HTTPServiceInterface {
+interface HTTPServiceInterface {
   get: <Result>(url: string, headers?: RequestHeaders) => Promise<Result>
   post: <Body, Result>(url: string, body: Body, headers?: RequestHeaders) => Promise<Result>
   put: <Body, Result>(url: string, body: Body, headers?: RequestHeaders) => Promise<Result>
   delete: <Result>(url: string, headers?: RequestHeaders) => Promise<Result>
 }
 
-export class HTTPService implements HTTPServiceInterface {
+class HTTPService implements HTTPServiceInterface {
   private readonly requestConfig: AxiosRequestConfig = {
     validateStatus: (status) => status >= 200 && status < 400,
     withCredentials: true
@@ -38,3 +38,5 @@ export class HTTPService implements HTTPServiceInterface {
     return ({ ...this.requestConfig, headers })
   }
 }
+
+export const httpService = new HTTPService()

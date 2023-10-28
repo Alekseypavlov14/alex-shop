@@ -1,6 +1,6 @@
 import { CategoryCreateDTO } from "../repository"
 import { CategoryEntity } from "../category.entity"
-import { httpService } from "@/services/http"
+import { httpService } from "@/services/http/client"
 import { Id } from "@/shared/types/Id"
 
 interface CategoriesClientServiceInterface {

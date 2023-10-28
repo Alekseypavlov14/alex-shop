@@ -1,11 +1,12 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
 import { loginCookieName, passwordCookieName } from '../constants'
-import { HTTPException, httpService } from '@/services/http'
 import { AuthenticationCredentials } from "../types/authentication-credentials"
 import { initializeFirebaseApp } from '@/shared/firebase'
 import { generatePassword } from '../utils/generate-password'
 import { cookiesService } from '@/services/cookies'
 import { UserCreateDTO } from "@/modules/users/server"
+import { HTTPException } from '@/services/http'
+import { httpService } from '@/services/http/client'
 
 export interface AuthenticationClientServiceInterface {
   signInWithLoginAndPassword: (userCreateDTO: UserCreateDTO) => Promise<void>
