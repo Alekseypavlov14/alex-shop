@@ -15,9 +15,6 @@ export interface AuthenticationServerServiceInterface {
 
 export class AuthenticationServerService implements AuthenticationServerServiceInterface {
   async signInUser(userCreateDTO: UserCreateDTO) {
-    // connect database
-    await connectDatabase()
-
     // validate user data
     if (!validateUserData(userCreateDTO)) throw new HTTPException(400)
 
@@ -36,9 +33,6 @@ export class AuthenticationServerService implements AuthenticationServerServiceI
   }
 
   async signUpUser(userCreateDTO: UserCreateDTO) {
-    // connect database
-    await connectDatabase()
-
     // validate user data
     if (!validateUserData(userCreateDTO)) throw new HTTPException(400)
 
@@ -54,8 +48,6 @@ export class AuthenticationServerService implements AuthenticationServerServiceI
 
   async validateAuthenticationCredentials(userAuthCredentials: AuthenticationCredentials) {
     try {
-      await connectDatabase()
-
       const { login, passwordHash } = userAuthCredentials
 
       const userCandidate = await userRepository.getByLogin(login)
