@@ -8,4 +8,5 @@ export interface ProductEntity {
   rating: number
   categoryId: Id
   imagePaths: string[]
+  keywords: string[]
 }

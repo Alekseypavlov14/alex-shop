@@ -14,11 +14,8 @@ export async function createProduct(productFormData: FormData): Promise<ProductE
   const productImagePaths = productImages.map(image => fileService.createFilePath(image))
 
   const productCreateDTO: ProductCreateDTO = {
-    name: productData.name,
-    description: productData.description,
-    price: productData.price,
-    categoryId: productData.categoryId,
-    imagePaths: productImagePaths
+    ...productData,
+    imagePaths: productImagePaths,
   }
 
   const product = await productRepository.create(productCreateDTO)
