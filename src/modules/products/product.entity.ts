@@ -7,5 +7,5 @@ export interface ProductEntity {
   price: number
   rating: number
   categoryId: Id
-  imagePath: string
+  imagePaths: string[]
 }
