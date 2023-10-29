@@ -1,9 +1,5 @@
-import { Id } from "@/shared/types/Id"
+import { ReviewEntity } from "../reviews"
 
-export interface CommentEntity {
-  id: Id
+export interface CommentEntity extends ReviewEntity {
   content: string
-  rating: number
-  userId: Id
-  productId: Id
 }
