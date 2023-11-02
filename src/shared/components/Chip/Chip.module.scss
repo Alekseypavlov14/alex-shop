@@ -1,0 +1,21 @@
+.Chip {
+  height: 22px;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 0 4px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: 1px solid $grey-100;
+}
+
+.Value {
+  @include headline-5;
+  color: $dark-color;
+}
+
+.CancelIcon {
+  cursor: pointer;
+}

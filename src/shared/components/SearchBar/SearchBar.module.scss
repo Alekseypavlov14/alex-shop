@@ -1,0 +1,21 @@
+.SearchBar {
+  width: 240px;
+  height: 34px;
+  padding: 6px 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  background-color: #fff;
+  border: 1px solid $primary-color;
+  border-radius: 6px;
+}
+
+.Input {
+  @include headline-5;
+  outline: none;
+  border: none;
+  flex: 1 0 auto;
+}
