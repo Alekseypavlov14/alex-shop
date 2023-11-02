@@ -12,6 +12,7 @@ export async function wrapRoute(req: NextRequest, route: Route): Promise<Respons
 
     return await route()
   } catch(error) {
+    console.log(error)
     return generateErrorResponse(error)
   }
 }

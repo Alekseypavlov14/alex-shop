@@ -10,8 +10,7 @@ interface ParamsWithName {
 
 export async function GET(request: NextRequest, { params }: ParamsWithName) {
   return await wrapRoute(request, async () => {
-    const filePath = `files/${params.name}`
-    const file = await fileService.getUploadedFile(filePath)
+    const file = await fileService.getUploadedFile(params.name)
     return new Response(file)
   })
 }
