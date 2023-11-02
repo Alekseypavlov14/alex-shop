@@ -23,9 +23,10 @@ export class ProductMongoRepository implements ProductRepository {
 
   async create(productCreateDTO: ProductCreateDTO) {
     const productData: ProductEntity = { 
-      ...productCreateDTO, 
+      ...productCreateDTO,
+      id: generateId(),
       rating: 0,
-      id: generateId() 
+      created: Date.now(), 
     }
     return await ProductModel.create<ProductEntity>(productData)
       .catch(() => {throw new HTTPException(400)}) as ProductEntity

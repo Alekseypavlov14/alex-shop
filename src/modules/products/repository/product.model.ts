@@ -9,7 +9,8 @@ const productSchema = new Schema<ProductEntity>({
   rating: { type: Number, required: true },
   categoryId: { type: String, required: true },
   imagePaths: { type: [String], required: true },
-  keywords: { type: [String], required: true }
+  keywords: { type: [String], required: true },
+  created: { type: Number, required: true }
 })
 
 export const ProductModel = models?.Product || model('Product', productSchema)

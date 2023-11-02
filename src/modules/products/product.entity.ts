@@ -9,4 +9,5 @@ export interface ProductEntity {
   categoryId: Id
   imagePaths: string[]
   keywords: string[]
+  created: number
 }
