@@ -1,0 +1,46 @@
+.CheckboxWrapper {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.CheckboxElement {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+.Checkbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid $primary-color;
+  border-radius: 4px;
+  background-color: #fff;
+
+  .CheckboxElement:disabled + & {
+    border-color: $grey-400;
+
+    .CheckboxIndicator {
+      background-color: $grey-400;
+    }
+  }
+}
+
+.CheckboxIndicator {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary-color;
+
+  .CheckboxElement:not(:checked) + .Checkbox & {
+    display: none;
+  }
+}
