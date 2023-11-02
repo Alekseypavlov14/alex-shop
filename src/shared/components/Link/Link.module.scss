@@ -1,0 +1,16 @@
+.Link {
+  color: $primary-color;
+  text-decoration: none;
+  position: relative;
+  @include headline-5;
+
+  &::after {
+    content: '';
+    background-color: $primary-color;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+  }
+}
