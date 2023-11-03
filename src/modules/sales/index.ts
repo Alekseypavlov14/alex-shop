@@ -1,0 +1,1 @@
+export type { SaleEntity } from './sale.entity'

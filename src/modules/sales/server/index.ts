@@ -1,0 +1,1 @@
+export { saleRepository, type SaleCreateDTO, type SaleRepository } from '../repository'
