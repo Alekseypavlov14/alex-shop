@@ -1,0 +1,1 @@
+export { favoriteRepository, type FavoriteCreateDTO, type FavoriteRepository } from '../repository'

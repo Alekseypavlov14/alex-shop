@@ -1,0 +1,1 @@
+export type { FavoriteEntity } from './favorite.entity'
