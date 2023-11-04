@@ -8,7 +8,7 @@ import { Id } from "@/shared/types/Id"
 
 export class FavoriteMongoRepository implements FavoriteRepository {
   async getByUserId(userId: Id) {
-    return await FavoriteModel.find<FavoriteEntity>({ userId })
+    return await FavoriteModel.find<FavoriteEntity>({ userId }).lean<FavoriteEntity[]>()
   }
 
   async create(favoriteCreateDTO: FavoriteCreateDTO) {

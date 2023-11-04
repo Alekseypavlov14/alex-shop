@@ -18,7 +18,7 @@ export class ProductMongoRepository implements ProductRepository {
   }
 
   async getByCategoryId(id: Id) {
-    return await ProductModel.find<ProductEntity>({ categoryId: id })
+    return await ProductModel.find<ProductEntity>({ categoryId: id }).lean<ProductEntity[]>()
   }
 
   async create(productCreateDTO: ProductCreateDTO) {

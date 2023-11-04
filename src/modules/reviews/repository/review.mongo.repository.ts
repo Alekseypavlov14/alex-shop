@@ -14,7 +14,7 @@ export class ReviewMongoRepository implements ReviewRepository {
   }
 
   async getByProductId(id: Id) {
-    const reviewCandidate = await ReviewModel.find<ReviewEntity>({ productId: id })
+    const reviewCandidate = await ReviewModel.find<ReviewEntity>({ productId: id }).lean<ReviewEntity[]>()
     if (!reviewCandidate) throw new HTTPException(404)
     return reviewCandidate
   }
