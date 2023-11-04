@@ -19,6 +19,14 @@ export class DateTime {
     return DateTime.mapDateToTimeData(this.time)
   }
 
+  getDate(): Date {
+    return this.time
+  } 
+
+  getTimeInMilliseconds(): number {
+    return this.time.getTime()
+  }
+
   getDateTimeBefore(timeData: TimeData): DateTime {
     // create clone of this.time
     const currentDate = new Date(this.time.getTime())
@@ -80,13 +88,13 @@ export class DateTime {
     const now = new Date()
 
     return ({
-      years: timeData.years || now.getFullYear(),
-      months: timeData.months || now.getMonth() + 1,
-      days: timeData.days || now.getDate(),
-      hours: timeData.hours || 0,
-      minutes: timeData.minutes || 0,
-      seconds: timeData.seconds || 0,
-      milliseconds: timeData.milliseconds || 0
+      years: timeData.years !== undefined ? timeData.years : now.getFullYear(),
+      months: timeData.months !== undefined ? timeData.months : now.getMonth() + 1,
+      days: timeData.days !== undefined ? timeData.days : now.getDate(),
+      hours: timeData.hours !== undefined ? timeData.hours : 0,
+      minutes: timeData.minutes !== undefined ? timeData.minutes : 0,
+      seconds: timeData.seconds !== undefined ? timeData.seconds : 0,
+      milliseconds: timeData.milliseconds !== undefined ? timeData.milliseconds : 0,
     })
   }
 }
