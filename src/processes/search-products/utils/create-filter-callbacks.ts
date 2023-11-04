@@ -1,3 +1,4 @@
+import { getCurrentProductPrice } from "./get-current-product-price"
 import { PreparedProduct } from "../types/prepared-product"
 import { FilterCallback } from "../types/filter-callback"
 import { SearchFilters } from "../types/search-filters"
@@ -25,8 +26,8 @@ function createPriceFilter(priceDiapason?: Partial<Diapason>) {
     if (!priceDiapason) return products
 
     return products.filter(product => (
-      (priceDiapason.min !== undefined ? product.price >= priceDiapason.min : true) &&
-      (priceDiapason.max !== undefined ? product.price <= priceDiapason.max : true)
+      (priceDiapason.min === undefined ? true : getCurrentProductPrice(product) >= priceDiapason.min) &&
+      (priceDiapason.max === undefined ? true : getCurrentProductPrice(product) <= priceDiapason.max)
     ))
   }
 }
@@ -36,8 +37,8 @@ function createRatingFilter(ratingDiapason?: Partial<Diapason>) {
     if (!ratingDiapason) return products
 
     return products.filter(product => (
-      (ratingDiapason.min !== undefined ? product.rating >= ratingDiapason.min : true) &&
-      (ratingDiapason.max !== undefined ? product.rating <= ratingDiapason.max : true)
+      (ratingDiapason.min === undefined ? true : product.rating >= ratingDiapason.min) &&
+      (ratingDiapason.max === undefined ? true : product.rating <= ratingDiapason.max)
     ))
   }
 }

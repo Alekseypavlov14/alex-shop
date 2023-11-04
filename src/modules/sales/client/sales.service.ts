@@ -4,7 +4,7 @@ import { SaleEntity } from "../sale.entity"
 import { Id } from "@/shared/types/Id"
 
 interface SalesServiceInterface {
-  getByProductId: (productId: Id) => Promise<SaleEntity>
+  getByProductId: (productId: Id) => Promise<SaleEntity[]>
   create: (saleCreateDTO: SaleCreateDTO) => Promise<SaleCreateDTO>
   updateById: (id: Id, saleData: Partial<SaleCreateDTO>) => Promise<SaleCreateDTO>
   deleteById: (id: Id) => Promise<SaleEntity>
@@ -12,7 +12,7 @@ interface SalesServiceInterface {
 
 class SalesService implements SalesServiceInterface {
   async getByProductId(productId: string) {
-    return await httpService.get<SaleEntity>(`/api/sales/products/${productId}`)
+    return await httpService.get<SaleEntity[]>(`/api/sales/products/${productId}`)
   }
 
   async create(saleCreateDTO: SaleCreateDTO) {
