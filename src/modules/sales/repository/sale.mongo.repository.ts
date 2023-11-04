@@ -1,7 +1,7 @@
 import { SaleRepository } from "./sale.repository"
 import { HTTPException } from "@/services/http"
 import { SaleCreateDTO } from "./dto/sale.create"
-import { getMaximumBy } from "@/shared/utils/getMaximumBy"
+import { Comparisons } from "@/shared/utils/comparisons"
 import { generateId } from "@/shared/utils/generateId"
 import { SaleEntity } from "../sale.entity"
 import { SaleModel } from "./sale.model"
@@ -12,7 +12,7 @@ export class SaleMongoRepository implements SaleRepository {
     const sales = await SaleModel.find<SaleEntity>({ productId })
     if (!sales.length) throw new HTTPException(404)
 
-    const latestSale = getMaximumBy(sales, sale => sale.created)
+    const latestSale = Comparisons.getMaximumBy(sales, sale => sale.created)
     return latestSale
   }
 

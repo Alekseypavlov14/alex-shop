@@ -8,7 +8,7 @@ import { Id } from '@/shared/types/Id'
 
 export class CommentMongoRepository implements CommentRepository {
   async getAll() {
-    return await CommentModel.find<CommentEntity>()
+    return await CommentModel.find<CommentEntity>().lean<CommentEntity[]>()
   }
 
   async getById(id: Id) {

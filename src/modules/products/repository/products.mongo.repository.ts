@@ -8,7 +8,7 @@ import { Id } from '@/shared/types/Id'
 
 export class ProductMongoRepository implements ProductRepository {
   async getAll() {
-    return await ProductModel.find<ProductEntity>({})
+    return await ProductModel.find<ProductEntity>({}).lean<ProductEntity[]>()
   }
 
   async getById(id: Id) {

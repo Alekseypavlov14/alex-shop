@@ -8,7 +8,7 @@ import { Id } from '@/shared/types/Id'
 
 export class CategoryMongoRepository implements CategoryRepository {
   async getAll() {
-    return await CategoryModel.find<CategoryEntity>();
+    return await CategoryModel.find<CategoryEntity>().lean<CategoryEntity[]>();
   }
 
   async getById(id: Id) {

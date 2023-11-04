@@ -8,7 +8,7 @@ import { Id } from "@/shared/types/Id"
 
 export class UserMongoRepository implements UserRepository {
   async getAll() {
-    return await UserModel.find<UserEntity>()
+    return await UserModel.find<UserEntity>().lean<UserEntity[]>()
   }
 
   async getById(id: Id) {
