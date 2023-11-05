@@ -5,8 +5,8 @@ import { Id } from "@/shared/types/Id"
 
 export interface SearchQuery {
   textQuery: string
-  paginationQuery: PaginationQuery
-  sortStrategy: SortStrategy
   filters: SearchFilters
   userId: Id
+  sortStrategy: SortStrategy
+  paginationQuery: PaginationQuery
 }

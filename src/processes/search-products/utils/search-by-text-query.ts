@@ -1,5 +1,6 @@
 import { ProductEntity } from "@/modules/products"
 
+// return products that match with text request
 export function searchByTextQuery(products: ProductEntity[], textQuery: string): ProductEntity[] {
   return products.filter(product => {
     const textQueryWords = splitBySpaceSymbols(textQuery).map(toLowerCase)

@@ -5,6 +5,7 @@ import { SearchFilters } from "../types/search-filters"
 import { Diapason } from "@/shared/types/Diapason"
 import { Id } from "@/shared/types/Id"
 
+// map filter data to filter callbacks that might be used in array.filter()
 export function createFilterCallbacks(filters: SearchFilters): FilterCallback[] {
   const categoryFilter = createCategoriesFilter(filters.categories)
   const priceFilter = createPriceFilter(filters.price)
