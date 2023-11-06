@@ -10,6 +10,6 @@ export function updateIndicatorsLabels(minIndicatorRef: RefObject<HTMLDivElement
 
   if (!minIndicatorLabel || !maxIndicatorLabel) return
 
-  minIndicatorLabel.innerHTML = value.min.toFixed(1)
-  maxIndicatorLabel.innerHTML = value.max.toFixed(1)
+  minIndicatorLabel.innerHTML = parseFloat(value.min.toFixed(1)).toString()
+  maxIndicatorLabel.innerHTML = parseFloat(value.max.toFixed(1)).toString()
 }
