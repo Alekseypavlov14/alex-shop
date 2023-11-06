@@ -36,4 +36,10 @@ export class Comparisons {
   static filterByLessOrEqualThan<T>(items: T[], selector: Selector<T>, value: number) {
     return items.filter(item => selector(item) <= value)
   }
+
+  static withinDiapason(min: number, value: number, max: number): number {
+    if (value > max) return max
+    if (value < min) return min
+    return value
+  }
 }
