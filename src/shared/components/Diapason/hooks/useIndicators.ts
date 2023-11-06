@@ -3,6 +3,7 @@ import { updateIndicatorsLabels } from "../utils/update-indicators-labels"
 import { updateDiapasonStyles } from "../utils/update-diapason-styles"
 import { mapPercentToValue } from "../utils/map-percent-to-value"
 import { mapValueToStyle } from "../utils/map-value-to-styles"
+import { useDebounce } from "@/shared/hooks/useDebounce"
 import { moveByMouse } from "../utils/move-by-mouse"
 import { Diapason } from "@/shared/types/Diapason"
 
@@ -13,13 +14,16 @@ interface UseIndicatorsConfig {
   value: Diapason
   diapason: Diapason
   onChange: (value: Diapason) => void
+  debounced: boolean
 }
 
 export function useIndicators(config: UseIndicatorsConfig) {
-  const { minIndicatorRef, maxIndicatorRef, diapasonRef, value, diapason, onChange } = config
+  const { minIndicatorRef, maxIndicatorRef, diapasonRef, value, diapason, onChange, debounced } = config
 
   const [min, setMin] = useState<number>(value.min)
   const [max, setMax] = useState<number>(value.max)
+  
+  const debouncedValue = useDebounce<Diapason>({ min, max })
   
   useEffect(() => {
     if (!minIndicatorRef.current || !maxIndicatorRef.current) return
@@ -47,9 +51,13 @@ export function useIndicators(config: UseIndicatorsConfig) {
       max: realMaximum
     }
 
-    onChange(selectedValue)
+    if (!debounced) onChange(selectedValue)
 
     updateDiapasonStyles(diapasonRef, selectedValue, diapason)
     updateIndicatorsLabels(minIndicatorRef, maxIndicatorRef, { min, max })
   }, [min, max])
+
+  useEffect(() => {
+    if (debounced) onChange(debouncedValue)
+  }, [debouncedValue])
 }

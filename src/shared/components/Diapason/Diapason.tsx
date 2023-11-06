@@ -10,6 +10,7 @@ interface DiapasonProps {
   diapason: IDiapason,
   value: IDiapason,
   onChange: (diapason: IDiapason) => void
+  debounced?: boolean
   className?: string
   classNames?: string[]
 }
@@ -18,6 +19,7 @@ export const Diapason: FC<DiapasonProps> = ({
   diapason, 
   value, 
   onChange,
+  debounced = false,
   className,
   classNames = []
 }) => {
@@ -33,7 +35,8 @@ export const Diapason: FC<DiapasonProps> = ({
     diapasonRef: selectedDiapasonRef,
     value,
     diapason,
-    onChange
+    onChange,
+    debounced
   })
 
   return (
