@@ -4,4 +4,6 @@ export const protectedRoutes: string[] = [
   '/api/comments',
   '/api/reviews',
   '/api/categories',
+  '/api/favorites',
+  '/api/sales'
 ]

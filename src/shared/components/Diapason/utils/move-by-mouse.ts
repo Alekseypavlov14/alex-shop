@@ -1,10 +1,11 @@
+import { clampIndicatorCoordinate } from "./clamp-indicator-coordinate"
 import { setActiveIndicator } from "./set-active-indicator"
 import { indicatorSizeInPx } from "../constants"
 import { Comparisons } from "@/shared/utils/comparisons"
 
 export function moveByMouse(indicator: HTMLDivElement, onChange: (percents: number) => void) {
   const diapasonRails = indicator.parentElement
-  if (!diapasonRails) return () => {}
+  if (!diapasonRails) return unsubscribe
 
   let isMouseDown = false
 
@@ -34,7 +35,7 @@ export function moveByMouse(indicator: HTMLDivElement, onChange: (percents: numb
     const newIndicatorX = startIndicatorX + mouseDifference
 
     const percents = mapPixelsToPercents(newIndicatorX, diapasonRails.offsetWidth)
-    indicator.style.left = `clamp(-${indicatorSizeInPx / 2}px, calc(${percents}% - ${indicatorSizeInPx / 2}px), ${diapasonRails.offsetWidth - indicatorSizeInPx / 2}px)`
+    indicator.style.left = clampIndicatorCoordinate(percents)
 
     const percentsValue = Comparisons.withinDiapason(0, percents, 100)
     onChange(percentsValue)
@@ -44,7 +45,9 @@ export function moveByMouse(indicator: HTMLDivElement, onChange: (percents: numb
   document.addEventListener('mouseup', onMouseUp)
   document.addEventListener('mousemove', onMouseMove)
 
-  return () => {
+  return unsubscribe
+
+  function unsubscribe() {
     indicator.removeEventListener('mousedown', onMouseDown)
     document.removeEventListener('mouseup', onMouseUp)
     document.removeEventListener('mousemove', onMouseMove)
