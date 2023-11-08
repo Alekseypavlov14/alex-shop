@@ -39,15 +39,18 @@ export const Diapason: FC<DiapasonProps> = ({
     debounced
   })
 
+  const minIndicatorClassNames = clsx(styles.Indicator, styles.MinIndicator)
+  const maxIndicatorClassNames = clsx(styles.Indicator, styles.MaxIndicator)
+
   return (
     <div className={combinedClassNames}>
       <div className={styles.DiapasonRails}>
-        <div className={styles.Indicator} ref={minimalIndicatorRef} data-indicator>
+        <div className={minIndicatorClassNames} ref={minimalIndicatorRef} data-indicator>
           <div className={styles.IndicatorReference}>
             <div className={styles.IndicatorLabel} data-indicator-label></div>
           </div>
         </div>
-        <div className={styles.Indicator} ref={maximumIndicatorRef} data-indicator>
+        <div className={maxIndicatorClassNames} ref={maximumIndicatorRef} data-indicator>
           <div className={styles.IndicatorReference}>
             <div className={styles.IndicatorLabel} data-indicator-label></div>
           </div>

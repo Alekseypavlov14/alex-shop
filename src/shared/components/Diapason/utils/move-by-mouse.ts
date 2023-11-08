@@ -1,5 +1,5 @@
-import { clampIndicatorCoordinate } from "./clamp-indicator-coordinate"
 import { setActiveIndicator } from "./set-active-indicator"
+import { mapPercentToStyle } from "./map-percent-to-style"
 import { indicatorSizeInPx } from "../constants"
 import { Comparisons } from "@/shared/utils/comparisons"
 
@@ -35,7 +35,7 @@ export function moveByMouse(indicator: HTMLDivElement, onChange: (percents: numb
     const newIndicatorX = startIndicatorX + mouseDifference
 
     const percents = mapPixelsToPercents(newIndicatorX, diapasonRails.offsetWidth)
-    indicator.style.left = clampIndicatorCoordinate(percents)
+    indicator.style.left = mapPercentToStyle(percents)
 
     const percentsValue = Comparisons.withinDiapason(0, percents, 100)
     onChange(percentsValue)

@@ -27,6 +27,14 @@
   &[data-indicator-active] {
     z-index: 2;
   }
+
+  &.MinIndicator {
+    left: -10px;
+  }
+  
+  &.MaxIndicator {
+    left: calc(100% - 10px);
+  }
 }
 
 .SelectedDiapason {

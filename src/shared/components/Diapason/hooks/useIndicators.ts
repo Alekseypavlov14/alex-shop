@@ -1,6 +1,7 @@
 import { RefObject, useEffect, useState } from "react"
 import { updateIndicatorsLabels } from "../utils/update-indicators-labels"
 import { updateDiapasonStyles } from "../utils/update-diapason-styles"
+import { isDiapasonEqualZero } from "../utils/is-diapason-equal-zero"
 import { mapPercentToValue } from "../utils/map-percent-to-value"
 import { mapValueToStyle } from "../utils/map-value-to-styles"
 import { useDebounce } from "@/shared/hooks/useDebounce"
@@ -28,6 +29,9 @@ export function useIndicators(config: UseIndicatorsConfig) {
   useEffect(() => {
     if (!minIndicatorRef.current || !maxIndicatorRef.current) return
 
+    // if diapason equals zero, indicators are not active
+    if (isDiapasonEqualZero(diapason)) return
+
     // default values
     minIndicatorRef.current.style.left = mapValueToStyle(value.min, diapason)
     maxIndicatorRef.current.style.left = mapValueToStyle(value.max, diapason)
@@ -43,6 +47,11 @@ export function useIndicators(config: UseIndicatorsConfig) {
   }, [])
 
   useEffect(() => {
+    updateIndicatorsLabels(minIndicatorRef, maxIndicatorRef, { min, max })
+
+    // if diapason equals zero, do not update styles and call onChange
+    if (isDiapasonEqualZero(diapason)) return
+
     const realMinimal = Math.min(min, max)
     const realMaximum = Math.max(min, max)
 
@@ -54,7 +63,6 @@ export function useIndicators(config: UseIndicatorsConfig) {
     if (!debounced) onChange(selectedValue)
 
     updateDiapasonStyles(diapasonRef, selectedValue, diapason)
-    updateIndicatorsLabels(minIndicatorRef, maxIndicatorRef, { min, max })
   }, [min, max])
 
   useEffect(() => {
