@@ -1,1 +1,1 @@
-export type { ProductEntity } from './product.entity'
+export type { ProductEntity, ProductEntityInfo } from './product.entity'

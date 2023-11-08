@@ -1,4 +1,4 @@
-import { productCategoryIdInputName, productDescriptionInputName, productImagesInputName, productKeywordsInputName, productNameInputName, productPriceInputName } from '../constants'
+import { productCategoryIdInputName, productDescriptionInputName, productImagesInputName, productInfoInputName, productKeywordsInputName, productNameInputName, productPriceInputName } from '../constants'
 import { ProductData } from "../types/product-data"
 
 export function mapProductDataToFormData(productData: ProductData) {
@@ -8,6 +8,7 @@ export function mapProductDataToFormData(productData: ProductData) {
   formData.append(productDescriptionInputName, productData.description)
   formData.append(productPriceInputName, String(productData.price))
   formData.append(productCategoryIdInputName, productData.categoryId)
+  formData.append(productInfoInputName, JSON.stringify(productData.info))
 
   productData.keywords.forEach(keyword => formData.append(productKeywordsInputName, keyword))
   productData.images.forEach(image => formData.append(productImagesInputName, image))

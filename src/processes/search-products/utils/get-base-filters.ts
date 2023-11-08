@@ -1,4 +1,5 @@
 import { getCurrentProductPrice } from "./get-current-product-price"
+import { getBaseInfoFilters } from "./get-base-info-filters"
 import { BaseSearchFilters } from "../types/base-search-filters"
 import { PreparedProduct } from "../types/prepared-product"
 import { Comparisons } from "@/shared/utils/comparisons"
@@ -19,9 +20,12 @@ export function getBaseFilters(products: PreparedProduct[]): BaseSearchFilters {
     max: Comparisons.getMaximumBy(products, product => product.rating).rating
   }
 
+  const infoData = getBaseInfoFilters(products)
+
   return ({
     categories,
     price: pricesDiapason,
-    rating: ratingDiapason
+    rating: ratingDiapason,
+    info: infoData
   })
 }

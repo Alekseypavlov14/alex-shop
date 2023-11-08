@@ -10,7 +10,8 @@ const productSchema = new Schema<ProductEntity>({
   categoryId: { type: String, required: true },
   imagePaths: { type: [String], required: true },
   keywords: { type: [String], required: true },
-  created: { type: Number, required: true }
+  created: { type: Number, required: true },
+  info: { type: Schema.Types.Map, required: true },
 })
 
 export const ProductModel = models?.Product || model('Product', productSchema)

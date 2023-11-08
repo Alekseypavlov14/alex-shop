@@ -10,4 +10,7 @@ export interface ProductEntity {
   imagePaths: string[]
   keywords: string[]
   created: number
+  info: ProductEntityInfo
 }
+
+export interface ProductEntityInfo extends Record<string, string> {}
