@@ -1,5 +1,6 @@
 import { RefObject, useEffect, useState } from "react"
 import { updateIndicatorsLabels } from "../utils/update-indicators-labels"
+import { normalizeMinMaxValues } from "../utils/normalize-mix-max-values"
 import { updateDiapasonStyles } from "../utils/update-diapason-styles"
 import { isDiapasonEqualZero } from "../utils/is-diapason-equal-zero"
 import { mapPercentToValue } from "../utils/map-percent-to-value"
@@ -24,14 +25,15 @@ export function useIndicators(config: UseIndicatorsConfig) {
   const [min, setMin] = useState<number>(value.min)
   const [max, setMax] = useState<number>(value.max)
   
-  const debouncedValue = useDebounce<Diapason>({ min, max })
+  const debouncedMin = useDebounce(min)
+  const debouncedMax = useDebounce(max)
   
   useEffect(() => {
     if (!minIndicatorRef.current || !maxIndicatorRef.current) return
-
+    
     // if diapason equals zero, indicators are not active
     if (isDiapasonEqualZero(diapason)) return
-
+    
     // default values
     minIndicatorRef.current.style.left = mapValueToStyle(value.min, diapason)
     maxIndicatorRef.current.style.left = mapValueToStyle(value.max, diapason)
@@ -52,13 +54,7 @@ export function useIndicators(config: UseIndicatorsConfig) {
     // if diapason equals zero, do not update styles and call onChange
     if (isDiapasonEqualZero(diapason)) return
 
-    const realMinimal = Math.min(min, max)
-    const realMaximum = Math.max(min, max)
-
-    const selectedValue = { 
-      min: realMinimal, 
-      max: realMaximum
-    }
+    const selectedValue = normalizeMinMaxValues({ min, max })
 
     if (!debounced) onChange(selectedValue)
 
@@ -66,6 +62,9 @@ export function useIndicators(config: UseIndicatorsConfig) {
   }, [min, max])
 
   useEffect(() => {
-    if (debounced) onChange(debouncedValue)
-  }, [debouncedValue])
+    if (!debounced) return
+
+    const selectedValue = normalizeMinMaxValues({ min: debouncedMin, max: debouncedMax })
+    onChange(selectedValue)
+  }, [debouncedMin, debouncedMax])
 }
