@@ -47,12 +47,17 @@ function createRatingFilter(ratingDiapason?: Partial<Diapason>) {
 }
 
 function createInfoFilter(productInfo?: Partial<ProductInfoSearchFilters>): FilterCallback {
+  console.log(productInfo)
+
   return (products: PreparedProduct[]) => {
     if (!productInfo) return products
 
-    const filters = Object.keys(productInfo).map(productInfoPropertyFilter => {
+    const filters = Object.keys(productInfo).map(productInfoProperty => {
       return (products: PreparedProduct[]) => products.filter(product => {
-        return productInfo[productInfoPropertyFilter]?.includes(product[productInfoPropertyFilter])
+        console.log('Property:', productInfoProperty)
+        console.log('Value:', productInfo[productInfoProperty])
+        console.log('Product:', product.info[productInfoProperty])
+        return productInfo[productInfoProperty]?.includes(product.info[productInfoProperty])
       })
     })
 

@@ -32,7 +32,11 @@ export default function Page() {
     const searchResult = await searchProducts({
       textQuery: 'a',
       paginationQuery: { limit: 100, skip: 0 },
-      filters: {},
+      filters: {
+        info: {
+          memory: ['256 GB']
+        }
+      },
       sortStrategy: { priority: 'price', direction: 'desc' },
       userId: '1698996723158'
     })

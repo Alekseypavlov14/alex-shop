@@ -8,5 +8,4 @@ export interface NavbarLink {
 export const navbarLinks: NavbarLink[] = [
   { href: '/', content: 'Products' },
   { href: '/blog', content: 'Blog' },
-  { href: '/policy', content: 'Policy' }
 ]
