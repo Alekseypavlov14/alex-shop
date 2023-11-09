@@ -8,6 +8,8 @@ import { Id } from "@/shared/types/Id"
 
 // returns data about price, rating diapasons and categories list of selected products
 export function getBaseFilters(products: PreparedProduct[]): BaseSearchFilters {
+  if (!products.length) return getEmptyBaseFilters()
+  
   const categories: Id[] = Array.from(new Set(products.map(product => product.categoryId)))
 
   const pricesDiapason: Diapason = {
@@ -27,5 +29,14 @@ export function getBaseFilters(products: PreparedProduct[]): BaseSearchFilters {
     price: pricesDiapason,
     rating: ratingDiapason,
     info: infoData
+  })
+}
+
+function getEmptyBaseFilters(): BaseSearchFilters {
+  return ({
+    categories: [],
+    price: { min: 0, max: 0 },
+    rating: { min: 0, max: 0 },
+    info: {}
   })
 }

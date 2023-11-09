@@ -20,6 +20,7 @@
   "author": "Oleksii Pavlov <aleshapavlov9@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@oleksii-pavlov/deep-merge": "^1.2.1",
     "axios": "^1.5.1",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.0.0",
@@ -27,7 +28,8 @@
     "mongoose": "^7.6.3",
     "next": "^13.5.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.6"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.5",

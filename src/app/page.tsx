@@ -1,54 +1,51 @@
 'use client'
 
-import { createProduct } from "@/processes/create-product/client"
 import { searchProducts } from "@/processes/search-products/client"
 import { Button } from "@/shared/components/Button"
+import { Input } from "@/shared/components/Input"
 import { Header } from "@/widgets/Header"
-import React, { useState } from "react"
+import React, { ChangeEvent } from "react"
+import { SortPriority, dateSortPriority, priceSortPriority, ratingSortPriority } from "@/processes/search-products"
+import { useSortStrategy, useTextQuery, useUpdateSortStrategy, useUpdateTextQuery } from "@/stores/search"
 
 export default function Page() {
-  const [files, setFiles] = useState<File[]>([])
-
-  async function createNewProduct() {
-    if (!files.length) return
-
-    const product = await createProduct({
-      name: 'Acer laptop',
-      description: 'The best laptop ever!',
-      keywords: ['Acer', 'Windows', 'Work'],
-      images: files,
-      categoryId: '1697798401966',
-      price: 1200,
-      info: {
-        brand: 'Acer',
-        memory: '256 GB'
-      }
-    })
-
-    console.log(product)
-  }
+  const textQuery = useTextQuery()
+  const updateTextQuery = useUpdateTextQuery()
+  const sortStrategy = useSortStrategy()
+  const updateSortStrategy = useUpdateSortStrategy()
 
   async function search() {
     const searchResult = await searchProducts({
-      textQuery: 'a',
+      textQuery: textQuery,
       paginationQuery: { limit: 100, skip: 0 },
-      filters: {
-        info: {
-          memory: ['256 GB']
-        }
-      },
-      sortStrategy: { priority: 'price', direction: 'desc' },
+      filters: {},
+      sortStrategy: sortStrategy,
       userId: '1698996723158'
     })
 
     console.log(searchResult)
   }
 
+  function updateTextQueryHandler(e: ChangeEvent<HTMLInputElement>) {
+    updateTextQuery(e.target.value.trim())
+  }
+
+  function updateSortStrategyHandler(e: ChangeEvent<HTMLSelectElement>) {
+    const priority = e.target.value as SortPriority
+    updateSortStrategy({ priority })
+  }
+
   return (
     <>
       <Header />
-      <input type="file" multiple onChange={(e) => setFiles(Array.from(e.target.files || []))} />
-      <Button onClick={createNewProduct}>Create</Button>
+
+      <Input value={textQuery} onChange={updateTextQueryHandler} />
+
+      <select onChange={updateSortStrategyHandler}>
+        <option value={priceSortPriority}>Price</option>
+        <option value={ratingSortPriority}>Rating</option>
+        <option value={dateSortPriority}>Date</option>
+      </select>
 
       <Button onClick={search}>Search</Button>
     </>
