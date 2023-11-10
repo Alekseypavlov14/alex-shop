@@ -1,5 +1,6 @@
 import { ProductInfoSearchFilters } from "../types/search-filters"
 import { ProductEntityInfo } from "@/modules/products"
+import { removeDuplicates } from "@/shared/utils/removeDuplicates"
 import { PreparedProduct } from "../types/prepared-product"
 
 export function getBaseInfoFilters(products: PreparedProduct[]): ProductInfoSearchFilters {
@@ -21,5 +22,5 @@ export function getBaseInfoFilters(products: PreparedProduct[]): ProductInfoSear
 
 function getProductsInfoPropertyValues(products: PreparedProduct[], selector: (product: PreparedProduct) => string) {
   const allProductInfoValues = products.map(selector)
-  return Array.from(new Set(allProductInfoValues)).filter(Boolean)
+  return removeDuplicates(allProductInfoValues).filter(Boolean)
 }

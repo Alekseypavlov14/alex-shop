@@ -1,6 +1,7 @@
 import { getCurrentProductPrice } from "./get-current-product-price"
 import { getBaseInfoFilters } from "./get-base-info-filters"
 import { BaseSearchFilters } from "../types/base-search-filters"
+import { removeDuplicates } from "@/shared/utils/removeDuplicates"
 import { PreparedProduct } from "../types/prepared-product"
 import { Comparisons } from "@/shared/utils/comparisons"
 import { Diapason } from "@/shared/types/Diapason"
@@ -10,7 +11,7 @@ import { Id } from "@/shared/types/Id"
 export function getBaseFilters(products: PreparedProduct[]): BaseSearchFilters {
   if (!products.length) return getEmptyBaseFilters()
   
-  const categories: Id[] = Array.from(new Set(products.map(product => product.categoryId)))
+  const categories: Id[] = removeDuplicates((products.map(product => product.categoryId)))
 
   const pricesDiapason: Diapason = {
     min: getCurrentProductPrice(Comparisons.getMinimumBy(products, getCurrentProductPrice)),

@@ -1,25 +1,38 @@
+import { removeDuplicates } from "@/shared/utils/removeDuplicates"
 import { ProductEntity } from "@/modules/products"
 
 // return products that match with text request
 export function searchByTextQuery(products: ProductEntity[], textQuery: string): ProductEntity[] {
-  return products.filter(product => {
-    const textQueryWords = splitBySpaceSymbols(textQuery).map(toLowerCase)
-    
-    const isMatched = (
-      splitBySpaceSymbols(product.name).map(toLowerCase).some(hasSubstringsAmong(textQueryWords)) ||
-      product.keywords.some(keyword => textQueryWords.includes(keyword))
-    )
+  const productsMatchedByName = findByProductName(products, textQuery)
+  const productsMatchedByDescription = findByDescription(products, textQuery)
+  const productsMatchedByKeywords = findByKeywords(products, textQuery)
 
-    return isMatched
-  })
+  return removeDuplicates([
+    ...productsMatchedByName, 
+    ...productsMatchedByDescription, 
+    ...productsMatchedByKeywords
+  ])
+}
+
+function findByProductName(products: ProductEntity[], text: string) {
+  return products.filter(product => product.name.includes(text))
+}
+
+function findByDescription(products: ProductEntity[], text: string) {
+  return products.filter(product => product.description.includes(text))
+}
+
+function findByKeywords(products: ProductEntity[], text: string) {
+  const textQueryWords = splitBySpaceSymbols(text)
+
+  const bestMatched = products.filter(product => product.keywords.every(hasSubstringsAmong(textQueryWords)))
+  const simpleMatched = products.filter(products => products.keywords.some(hasSubstringsAmong(textQueryWords)))
+
+  return [...bestMatched, ...simpleMatched]
 }
 
 function splitBySpaceSymbols(text: string) {
   return text.split(/\s/).filter(substring => substring.length)
-}
-
-function toLowerCase(text: string) {
-  return text.toLowerCase()
 }
 
 function hasSubstringsAmong(substrings: string[]) {
