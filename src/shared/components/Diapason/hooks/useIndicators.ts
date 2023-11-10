@@ -56,7 +56,7 @@ export function useIndicators(config: UseIndicatorsConfig) {
     // update indicators
     updateIndicatorsLabels(minIndicatorRef, maxIndicatorRef, { min, max })
     
-    // if diapason equals zero set default styles
+    // if diapason equals zero, set default styles
     if (isDiapasonEqualZero(diapason)) return setZeroDiapasonStyles(minIndicatorRef, maxIndicatorRef, diapasonRef)
     
     // sync indicator values
@@ -67,7 +67,6 @@ export function useIndicators(config: UseIndicatorsConfig) {
     const selectedValue = normalizeMinMaxValues({ min, max })
     updateDiapasonStyles(diapasonRef, selectedValue, diapason)
 
-    // call on change
     if (!debounced) onChange(selectedValue)
   }, [min, max])
 
@@ -77,4 +76,15 @@ export function useIndicators(config: UseIndicatorsConfig) {
     const selectedValue = normalizeMinMaxValues({ min: debouncedMin, max: debouncedMax })
     onChange(selectedValue)
   }, [debouncedMin, debouncedMax])
+
+  useEffect(() => {
+    const isMinGreaterThanMax = value.min > value.max
+
+    // if min indicator stays righter than max indicator, it must be saved by switching min and max values
+    const adoptedMin = isMinGreaterThanMax ? value.max : value.min
+    const adoptedMax = isMinGreaterThanMax ? value.min : value.max 
+    
+    setMin(Comparisons.withinDiapason(diapason.min, adoptedMin, diapason.max))
+    setMax(Comparisons.withinDiapason(diapason.min, adoptedMax, diapason.max))
+  }, [value])
 }
