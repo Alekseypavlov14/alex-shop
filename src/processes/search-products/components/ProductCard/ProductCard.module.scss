@@ -1,0 +1,54 @@
+.ProductCard {
+  width: min(200px, 100%);
+  height: 340px;
+  border-radius: 10px;
+  border: 1px solid $primary-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.CardHeader {
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.CardHeaderIcon {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CardImageContainer {
+  padding: 0 20px;
+  margin: 0px auto;
+}
+
+.CardImage {
+  max-width: 160px;
+  max-height: 110px;
+  object-position: center;
+}
+
+.CardInfoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.CardTitle {
+  padding: 0px 20px;
+  @include headline-5;
+  text-align: center;
+  
+  height: 44px;
+  display: -webkit-box; 
+  -webkit-box-orient: vertical; 
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
