@@ -1,5 +1,6 @@
 import { SortDirection, SortPriority, SortStrategy } from "../types/sort-strategy"
 import { getCurrentProductPrice } from "./get-current-product-price"
+import { getProductRatingValue } from "./get-product-rating-value"
 import { Comparisons, Selector } from "@/shared/utils/comparisons"
 import { ascendingDirection } from "../constants"
 import { PreparedProduct } from "../types/prepared-product"
@@ -9,7 +10,7 @@ export function sortByStrategy(products: PreparedProduct[], sortStrategy: SortSt
   
   const sortStrategySelectors: Record<SortPriority, Selector<PreparedProduct>> = {
     price: getCurrentProductPrice,
-    rating: product => product.rating,
+    rating: getProductRatingValue,
     date: product => product.created,
   }
 

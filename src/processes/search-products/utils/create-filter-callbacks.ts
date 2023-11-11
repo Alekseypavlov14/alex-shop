@@ -1,5 +1,6 @@
 import { ProductInfoSearchFilters, SearchFilters } from "../types/search-filters"
 import { getCurrentProductPrice } from "./get-current-product-price"
+import { getProductRatingValue } from "./get-product-rating-value"
 import { PreparedProduct } from "../types/prepared-product"
 import { FilterCallback } from "../types/filter-callback"
 import { combineFilters } from "./combine-filters"
@@ -40,8 +41,8 @@ function createRatingFilter(ratingDiapason?: Partial<Diapason>) {
     if (!ratingDiapason) return products
 
     return products.filter(product => (
-      (ratingDiapason.min === undefined ? true : product.rating >= ratingDiapason.min) &&
-      (ratingDiapason.max === undefined ? true : product.rating <= ratingDiapason.max)
+      (ratingDiapason.min === undefined ? true : getProductRatingValue(product) >= ratingDiapason.min) &&
+      (ratingDiapason.max === undefined ? true : getProductRatingValue(product) <= ratingDiapason.max)
     ))
   }
 }
@@ -54,9 +55,6 @@ function createInfoFilter(productInfo?: Partial<ProductInfoSearchFilters>): Filt
 
     const filters = Object.keys(productInfo).map(productInfoProperty => {
       return (products: PreparedProduct[]) => products.filter(product => {
-        console.log('Property:', productInfoProperty)
-        console.log('Value:', productInfo[productInfoProperty])
-        console.log('Product:', product.info[productInfoProperty])
         return productInfo[productInfoProperty]?.includes(product.info[productInfoProperty])
       })
     })

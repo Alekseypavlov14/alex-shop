@@ -1,4 +1,5 @@
 import { getCurrentProductPrice } from "./get-current-product-price"
+import { getProductRatingValue } from "./get-product-rating-value"
 import { getBaseInfoFilters } from "./get-base-info-filters"
 import { BaseSearchFilters } from "../types/base-search-filters"
 import { removeDuplicates } from "@/shared/utils/removeDuplicates"
@@ -19,8 +20,8 @@ export function getBaseFilters(products: PreparedProduct[]): BaseSearchFilters {
   }
 
   const ratingDiapason: Diapason = {
-    min: Comparisons.getMinimumBy(products, product => product.rating).rating,
-    max: Comparisons.getMaximumBy(products, product => product.rating).rating
+    min: getProductRatingValue(Comparisons.getMinimumBy(products, getProductRatingValue)),
+    max: getProductRatingValue(Comparisons.getMaximumBy(products, getProductRatingValue))
   }
 
   const infoData = getBaseInfoFilters(products)

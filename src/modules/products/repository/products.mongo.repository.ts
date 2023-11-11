@@ -1,4 +1,5 @@
 import { ProductRepository } from "./products.repository"
+import { getProductRating } from "../utils/get-product-rating"
 import { ProductCreateDTO } from "./dto/product.create"
 import { ProductEntity } from "../product.entity"
 import { HTTPException } from "@/services/http"
@@ -25,7 +26,7 @@ export class ProductMongoRepository implements ProductRepository {
     const productData: ProductEntity = { 
       ...productCreateDTO,
       id: generateId(),
-      rating: 0,
+      rating: getProductRating([]),
       created: Date.now(), 
     }
     return await ProductModel.create<ProductEntity>(productData)

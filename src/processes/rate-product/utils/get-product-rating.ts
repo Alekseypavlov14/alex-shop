@@ -1,9 +1,9 @@
-import { calculateAverageRating } from "./calculate-average-rating"
-import { commentRepository } from "@/modules/comments/repository"
-import { reviewRepository } from "@/modules/reviews/repository"
+import { ProductEntityRating, getProductRating } from "@/modules/products"
+import { commentRepository } from "@/modules/comments/server"
+import { reviewRepository } from "@/modules/reviews/server"
 import { Id } from "@/shared/types/Id"
 
-export async function getProductRating(productId: Id): Promise<number> {
+export async function calculateProductRating(productId: Id): Promise<ProductEntityRating> {
   const reviews = await reviewRepository.getByProductId(productId)
   const comments = await commentRepository.getByProductId(productId)
 
@@ -12,7 +12,7 @@ export async function getProductRating(productId: Id): Promise<number> {
 
   const rates: number[] = [...reviewRates, ...commentRates]
 
-  const averageRating = calculateAverageRating(rates)
+  const rating = getProductRating(rates)
 
-  return averageRating
+  return rating
 }

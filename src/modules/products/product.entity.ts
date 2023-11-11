@@ -5,12 +5,17 @@ export interface ProductEntity {
   name: string
   description: string
   price: number
-  rating: number
+  rating: ProductEntityRating
   categoryId: Id
   imagePaths: string[]
   keywords: string[]
   created: number
   info: ProductEntityInfo
+}
+
+export interface ProductEntityRating {
+  value: number
+  amount: number
 }
 
 export interface ProductEntityInfo extends Record<string, string> {}
