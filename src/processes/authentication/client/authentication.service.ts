@@ -12,6 +12,7 @@ export interface AuthenticationClientServiceInterface {
   signInWithLoginAndPassword: (userCreateDTO: UserCreateDTO) => Promise<void>
   singUpWithLoginAndPassword: (userCreateDTO: UserCreateDTO) => Promise<void>
   signInWithGoogle: () => Promise<void>
+  getCredentials: () => AuthenticationCredentials | null
 }
 
 export class AuthenticationClientService implements AuthenticationClientServiceInterface {
@@ -46,6 +47,15 @@ export class AuthenticationClientService implements AuthenticationClientServiceI
     } catch(e) {
       this.signInWithLoginAndPassword(userCreateDTO)
     }
+  }
+
+  getCredentials() {
+    const login = cookiesService.get(loginCookieName)
+    const passwordHash = cookiesService.get(passwordCookieName)
+
+    if (!login || !passwordHash) return null
+
+    return ({ login, passwordHash })
   }
 
   private async signInRequest(userCreateDTO: UserCreateDTO) {
