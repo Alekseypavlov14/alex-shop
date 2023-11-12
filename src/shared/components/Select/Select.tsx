@@ -1,24 +1,32 @@
-import { FC } from 'react'
+import { getOptionByValue } from './utils/get-option-by-value'
 import { Option } from './types/Option'
 import { styles } from './utils/styles'
 import ReactSelect from 'react-select'
 
-interface SelectProps {
-  options: Option[]
-  onChange: (value: Option | Option[]) => void
+interface SelectProps<T extends string = string> {
+  options: Option<T>[]
+  onChange: (value: Option<T> | Option<T>[]) => void
+  value?: T
+  defaultValue?: Option<T>
   multiple?: boolean
 }
 
-export const Select: FC<SelectProps> = ({ 
+export function Select<T extends string = string>({ 
   options,
   onChange,
+  value,
+  defaultValue,
   multiple
-}) => {
+}: SelectProps<T>) {
+  const valueOption = value ? getOptionByValue<T>(options, value) : undefined
+
   return (
     <ReactSelect 
-      styles={styles}
       options={options} 
       onChange={onChange}
+      value={valueOption}
+      defaultValue={defaultValue}
+      styles={styles}
       isMulti={multiple}
     />
   )

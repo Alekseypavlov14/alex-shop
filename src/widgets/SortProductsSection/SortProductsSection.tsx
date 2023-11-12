@@ -1,13 +1,14 @@
 import { FC } from 'react'
+import { useSortStrategy, useUpdateSortStrategy } from '@/stores/search'
 import { directionOptions, priorityOptions } from './constants'
 import { SortDirection, SortPriority } from '@/processes/search-products'
-import { useUpdateSortStrategy } from '@/stores/search'
 import { Select, Option } from '@/shared/components/Select'
 import styles from './SortProductsSection.module.scss'
 
 interface SortProductsSectionProps {}
 
 export const SortProductsSection: FC<SortProductsSectionProps> = () => {
+  const sortStrategy = useSortStrategy()
   const updateSortStrategy = useUpdateSortStrategy()
 
   function updateSortPriority(sortPriority: Option<SortPriority>) {
@@ -23,11 +24,13 @@ export const SortProductsSection: FC<SortProductsSectionProps> = () => {
       <Select
         options={priorityOptions}
         onChange={updateSortPriority}
+        value={sortStrategy.priority}
       />
 
       <Select
         options={directionOptions}
         onChange={updateSortDirection}
+        value={sortStrategy.direction}
       />
     </div>
   )

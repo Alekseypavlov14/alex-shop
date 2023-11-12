@@ -10,12 +10,12 @@ import {
 } from '@/processes/search-products'
 
 export const priorityOptions: Option<SortPriority>[] = [
+  { label: 'Date', value: dateSortPriority },
   { label: 'Price', value: priceSortPriority },
   { label: 'Rating', value: ratingSortPriority },
-  { label: 'Date', value: dateSortPriority },
 ] 
 
 export const directionOptions: Option<SortDirection>[] = [  
+  { label: 'Descending', value: descendingDirection },
   { label: 'Ascending', value: ascendingDirection },
-  { label: 'Descending', value: descendingDirection }
 ]
