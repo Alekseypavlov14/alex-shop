@@ -1,21 +1,21 @@
 'use client'
 
-import { Diapason as IDiapason } from '@/shared/types/Diapason'
 import { useIndicators } from './hooks/useIndicators'
 import { FC, useRef } from 'react'
+import { Diapason } from '@/shared/types/Diapason'
 import { clsx } from '@/shared/utils/clsx'
-import styles from './Diapason.module.scss'
+import styles from './DiapasonSelector.module.scss'
 
-interface DiapasonProps {
-  diapason: IDiapason,
-  value: IDiapason,
-  onChange: (diapason: IDiapason) => void
+interface DiapasonSelectorProps {
+  diapason: Diapason,
+  value: Diapason,
+  onChange: (diapason: Diapason) => void
   debounced?: boolean
   className?: string
   classNames?: string[]
 }
 
-export const Diapason: FC<DiapasonProps> = ({ 
+export const DiapasonSelector: FC<DiapasonSelectorProps> = ({ 
   diapason, 
   value, 
   onChange,
@@ -27,7 +27,7 @@ export const Diapason: FC<DiapasonProps> = ({
   const maximumIndicatorRef = useRef<HTMLDivElement>(null)
   const selectedDiapasonRef = useRef<HTMLDivElement>(null)
 
-  const combinedClassNames = clsx(styles.Diapason, className, ...classNames)
+  const combinedClassNames = clsx(styles.DiapasonSelector, className, ...classNames)
 
   useIndicators({
     minIndicatorRef: minimalIndicatorRef,

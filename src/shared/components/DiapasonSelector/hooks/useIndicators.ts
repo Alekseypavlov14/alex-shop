@@ -6,9 +6,9 @@ import { updateDiapasonStyles } from "../utils/update-diapason-styles"
 import { isDiapasonEqualZero } from "../utils/is-diapason-equal-zero"
 import { mapPercentToValue } from "../utils/map-percent-to-value"
 import { mapValueToStyle } from "../utils/map-value-to-styles"
+import { moveByMouse } from "../utils/move-by-mouse"
 import { useDebounce } from "@/shared/hooks/useDebounce"
 import { Comparisons } from "@/shared/utils/comparisons"
-import { moveByMouse } from "../utils/move-by-mouse"
 import { Diapason } from "@/shared/types/Diapason"
 
 interface UseIndicatorsConfig {
