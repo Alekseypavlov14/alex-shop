@@ -1,0 +1,1 @@
+export type SearchStatus = 'pending' | 'success' |  'error' | 'none'
