@@ -4,6 +4,7 @@ import { getBaseInfoFilters } from "./get-base-info-filters"
 import { BaseSearchFilters } from "../types/base-search-filters"
 import { removeDuplicates } from "@/shared/utils/removeDuplicates"
 import { PreparedProduct } from "../types/prepared-product"
+import { zeroDiapason } from "@/shared/constants/diapason"
 import { Comparisons } from "@/shared/utils/comparisons"
 import { Diapason } from "@/shared/types/Diapason"
 import { Id } from "@/shared/types/Id"
@@ -37,8 +38,8 @@ export function getBaseFilters(products: PreparedProduct[]): BaseSearchFilters {
 function getEmptyBaseFilters(): BaseSearchFilters {
   return ({
     categories: [],
-    price: { min: 0, max: 0 },
-    rating: { min: 0, max: 0 },
+    price: zeroDiapason,
+    rating: zeroDiapason,
     info: {}
   })
 }
