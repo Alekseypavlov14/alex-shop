@@ -1,7 +1,5 @@
-import { getBaseFilters } from "@/processes/search-products"
-import { useProducts } from "./use-products"
+import { baseFiltersSelector, useSearchStore } from "../search-store"
 
 export function useBaseFilters() {
-  const products = useProducts()
-  return getBaseFilters(products)
+  return useSearchStore(baseFiltersSelector)
 }

@@ -48,8 +48,6 @@ function createRatingFilter(ratingDiapason?: Partial<Diapason>) {
 }
 
 function createInfoFilter(productInfo?: Partial<ProductInfoSearchFilters>): FilterCallback {
-  console.log(productInfo)
-
   return (products: PreparedProduct[]) => {
     if (!productInfo) return products
 
