@@ -5,8 +5,8 @@ import { Id } from "@/shared/types/Id"
 
 export interface SearchFilters {
   categories?: Id[]
-  price?: Partial<Diapason>
-  rating?: Partial<Diapason>
+  price?: Diapason
+  rating?: Diapason
   info?: Partial<ProductInfoSearchFilters>
 }
 

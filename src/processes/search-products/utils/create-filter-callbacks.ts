@@ -25,24 +25,24 @@ function createCategoriesFilter(categories?: Id[]) {
   }
 }
 
-function createPriceFilter(priceDiapason?: Partial<Diapason>) {
+function createPriceFilter(priceDiapason?: Diapason) {
   return (products: PreparedProduct[]) => {
     if (!priceDiapason) return products
 
     return products.filter(product => (
-      (priceDiapason.min === undefined ? true : getCurrentProductPrice(product) >= priceDiapason.min) &&
-      (priceDiapason.max === undefined ? true : getCurrentProductPrice(product) <= priceDiapason.max)
+      getCurrentProductPrice(product) >= priceDiapason.min &&
+      getCurrentProductPrice(product) <= priceDiapason.max
     ))
   }
 }
 
-function createRatingFilter(ratingDiapason?: Partial<Diapason>) {
+function createRatingFilter(ratingDiapason?: Diapason) {
   return (products: PreparedProduct[]) => {
     if (!ratingDiapason) return products
 
     return products.filter(product => (
-      (ratingDiapason.min === undefined ? true : getProductRatingValue(product) >= ratingDiapason.min) &&
-      (ratingDiapason.max === undefined ? true : getProductRatingValue(product) <= ratingDiapason.max)
+      getProductRatingValue(product) >= ratingDiapason.min &&
+      getProductRatingValue(product) <= ratingDiapason.max
     ))
   }
 }
