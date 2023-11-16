@@ -18,8 +18,9 @@ interface SearchState {
 interface SearchStoreActions {
   updateTextQuery: (textQuery: string) => void
   updateFilters: (filters: SearchFilters) => void
+  resetFilters: () => void
   updateProducts: (products: PreparedProduct[]) => void
-  updateBaseFilters: (baseFilters: BaseSearchFilters) => void
+  updateBaseFilters: (baseFilters: BaseSearchFilters | null) => void
   updatePage: (page: number) => void
   updateSortStrategy: (sortStrategy: Partial<SortStrategy>) => void
   updateStatus: (status: SearchStatus) => void
@@ -38,6 +39,7 @@ export const useSearchStore = create<SearchStore>(set => ({
 
   updateTextQuery: (textQuery) => set((state) => ({ ...state, textQuery })),
   updateFilters: (filters) => set((state) => ({ ...state, filters: deepMerge<SearchFilters>(state.filters, filters) })),
+  resetFilters: () => set((state) => ({ ...state, filters: {} })),
   updateProducts: (products) => set((state) => ({ ...state, products })),
   updateBaseFilters: (baseFilters) => set((state) => ({ ...state, baseFilters })),
   updatePage: (page) => set((state) => ({ ...state, page })),
@@ -56,6 +58,7 @@ export const statusSelector = (state: SearchStore) => state.status
 
 export const updateTextQuerySelector = (state: SearchStore) => state.updateTextQuery
 export const updateFiltersSelector = (state: SearchStore) => state.updateFilters
+export const resetFiltersSelector = (state: SearchStore) => state.resetFilters
 export const updateProductsSelector = (state: SearchStore) => state.updateProducts
 export const updateBaseFiltersSelector = (state: SearchStore) => state.updateBaseFilters
 export const updatePageSelector = (state: SearchStore) => state.updatePage
