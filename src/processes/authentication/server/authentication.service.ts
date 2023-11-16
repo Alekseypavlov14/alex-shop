@@ -2,15 +2,16 @@ import { userRepository, UserCreateDTO } from "@/modules/users/server"
 import { AuthenticationCredentials } from "../types/authentication-credentials"
 import { mapUserDataToCredentials } from "../utils/map-user-data-to-credentials"
 import { validateUserData } from "../utils/validate-user-data"
-import { connectDatabase } from "@/shared/utils/connectDatabase"
 import { HTTPException } from "@/services/http"
 import { compare, hash } from 'bcryptjs'
 import { HASH_SALT } from "@/shared/constants/database"
+import { Id } from "@/shared/types/Id"
 
 export interface AuthenticationServerServiceInterface {
   signInUser: (userCreateDTO: UserCreateDTO) => Promise<AuthenticationCredentials>
   signUpUser: (userCreateDTO: UserCreateDTO) => Promise<AuthenticationCredentials>
   validateAuthenticationCredentials: (userAuthCredentials: AuthenticationCredentials) => Promise<boolean>
+  getUserId: (authCredentials: AuthenticationCredentials) => Promise<Id>
 }
 
 export class AuthenticationServerService implements AuthenticationServerServiceInterface {
@@ -59,6 +60,16 @@ export class AuthenticationServerService implements AuthenticationServerServiceI
       return false
     }
   } 
+
+  async getUserId(authCredentials: AuthenticationCredentials) {
+    const user = await userRepository.getByLogin(authCredentials.login)
+    if (!user) throw new HTTPException(401)
+
+    const comparison = user.password === authCredentials.passwordHash
+    if (!comparison) throw new HTTPException(401)
+
+    return user.id
+  }
 }
 
 export const authenticationServerService = new AuthenticationServerService()
