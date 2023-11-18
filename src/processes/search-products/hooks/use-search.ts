@@ -1,14 +1,21 @@
-import { useUpdateBaseFilters, useUpdatePage, useUpdateProducts, useUpdateStatus } from '@/stores/search'
-import { errorSearchStatus, pendingSearchStatus, successSearchStatus } from '../constants'
 import { authenticationClientService } from '@/processes/authentication/client'
-import { mapPageToPaginationQuery } from '@/processes/search-products'
-import { getDefaultSortStrategy } from '../utils/get-default-sort-strategy'
-import { useUpdateTextQuery } from "./use-update-text-query"
-import { useUpdateFilters } from "./use-update-filters"
-import { useResetFilters } from './use-reset-filters'
-import { searchProducts } from '@/processes/search-products/client'
+import { mapPageToPaginationQuery } from '../utils/map-page-to-pagination-query'
+import { searchProducts } from '../client/search-products'
 import { HTTPException } from '@/services/http'
 import { Id } from '@/shared/types/Id'
+import { 
+  errorSearchStatus, 
+  pendingSearchStatus, 
+  successSearchStatus, 
+  getDefaultSortStrategy, 
+  useUpdateTextQuery, 
+  useUpdateFilters, 
+  useResetFilters, 
+  useUpdateBaseFilters, 
+  useUpdatePage, 
+  useUpdateProducts, 
+  useUpdateStatus 
+} from '../store'
 
 export function useSearch() {
   const firstPageIndex = 0

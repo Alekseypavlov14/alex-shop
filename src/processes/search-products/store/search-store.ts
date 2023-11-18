@@ -1,6 +1,9 @@
-import { SearchFilters, SortStrategy, PreparedProduct, BaseSearchFilters, getBaseFilters } from "@/processes/search-products"
 import { getDefaultSortStrategy } from "./utils/get-default-sort-strategy"
+import { BaseSearchFilters } from "../types/base-search-filters"
 import { noneSearchStatus } from "./constants"
+import { PreparedProduct } from "../types/prepared-product"
+import { SearchFilters } from "../types/search-filters"
+import { SortStrategy } from "../types/sort-strategy"
 import { SearchStatus } from "./types/SearchStatus"
 import { deepMerge } from '@oleksii-pavlov/deep-merge'
 import { create } from "zustand"
