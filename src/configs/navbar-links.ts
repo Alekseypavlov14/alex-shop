@@ -6,6 +6,6 @@ export interface NavbarLink {
 }
 
 export const navbarLinks: NavbarLink[] = [
-  { href: '/', content: 'Products' },
+  { href: '/search', content: 'Products' },
   { href: '/blog', content: 'Blog' },
 ]

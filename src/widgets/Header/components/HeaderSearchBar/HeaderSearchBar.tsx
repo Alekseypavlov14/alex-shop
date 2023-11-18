@@ -1,23 +1,30 @@
-import { ChangeEvent, FC } from 'react'
-import { useTextQuery, useUpdateTextQuery } from '@/stores/search'
+'use client'
+
+import { ChangeEvent, FC, useState } from 'react'
 import { SearchBar } from '@/shared/components/SearchBar'
+import { useSearch } from '@/processes/search-products/client'
 import styles from './HeaderSearchBar.module.scss'
 
 interface HeaderSearchBarProps {}
 
 export const HeaderSearchBar: FC<HeaderSearchBarProps> = () => {
-  const textQuery = useTextQuery()
-  const updateTextQuery = useUpdateTextQuery()
-
+  const [searchValue, setSearchValue] = useState('')
+  const search = useSearch()
+  
   function updateTextQueryHandler(e: ChangeEvent<HTMLInputElement>) {
-    updateTextQuery(e.target.value.trim())
+    setSearchValue(e.target.value)
+  }
+
+  function onEnterHandler() {
+    search(searchValue.trim())
   }
 
   return (
     <SearchBar 
       className={styles.HeaderSearchBar} 
       onChange={updateTextQueryHandler} 
-      value={textQuery}
+      onEnter={onEnterHandler}
+      value={searchValue}
     />
   )
 }

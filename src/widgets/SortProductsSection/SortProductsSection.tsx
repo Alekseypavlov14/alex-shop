@@ -1,5 +1,7 @@
+'use client'
+
 import { FC } from 'react'
-import { useSortStrategy, useUpdateSortStrategy } from '@/stores/search'
+import { useSortStrategy, useUpdateSortStrategy } from '@/processes/search-products/client'
 import { directionOptions, priorityOptions } from './constants'
 import { SortDirection, SortPriority } from '@/processes/search-products'
 import { Select, Option } from '@/shared/components/Select'
