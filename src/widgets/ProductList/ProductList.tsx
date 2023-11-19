@@ -1,8 +1,7 @@
 'use client'
 
 import { FC } from 'react'
-import { ProductCard } from '@/processes/search-products/client'
-import { useProducts } from '@/processes/search-products/client'
+import { ProductCard, useProducts } from '@/features/search'
 import styles from './ProductList.module.scss'
 
 interface ProductListProps {}

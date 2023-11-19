@@ -1,0 +1,1 @@
+export { SearchInfoBar } from './SearchInfoBar'

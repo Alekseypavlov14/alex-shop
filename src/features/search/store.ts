@@ -1,9 +1,6 @@
+import { BaseSearchFilters, PreparedProduct, SearchFilters, SortStrategy } from '@/processes/search-products'
 import { getDefaultSortStrategy } from "./utils/get-default-sort-strategy"
-import { BaseSearchFilters } from "../types/base-search-filters"
 import { noneSearchStatus } from "./constants"
-import { PreparedProduct } from "../types/prepared-product"
-import { SearchFilters } from "../types/search-filters"
-import { SortStrategy } from "../types/sort-strategy"
 import { SearchStatus } from "./types/SearchStatus"
 import { deepMerge } from '@oleksii-pavlov/deep-merge'
 import { create } from "zustand"
@@ -67,3 +64,21 @@ export const updateBaseFiltersSelector = (state: SearchStore) => state.updateBas
 export const updatePageSelector = (state: SearchStore) => state.updatePage
 export const updateSortStrategySelector = (state: SearchStore) => state.updateSortStrategy
 export const updateStatusSelector = (state: SearchStore) => state.updateStatus
+
+// hooks
+export const useTextQuery = () => useSearchStore(textQuerySelector)
+export const useFilters = () => useSearchStore(filtersSelector)
+export const useProducts = () => useSearchStore(productsSelector)
+export const useBaseFilters = () => useSearchStore(baseFiltersSelector)
+export const usePage = () => useSearchStore(pageSelector)
+export const useSortStrategy = () => useSearchStore(sortStrategySelector) 
+export const useStatus = () => useSearchStore(statusSelector)
+
+export const useUpdateTextQuery = () => useSearchStore(updateTextQuerySelector)
+export const useUpdateFilters = () => useSearchStore(updateFiltersSelector)
+export const useResetFilters = () => useSearchStore(resetFiltersSelector)
+export const useUpdateProducts = () => useSearchStore(updateProductsSelector)
+export const useUpdateBaseFilters = () => useSearchStore(updateBaseFiltersSelector)
+export const useUpdatePage = () => useSearchStore(updatePageSelector)
+export const useUpdateSortStrategy = () => useSearchStore(updateSortStrategySelector)
+export const useUpdateStatus = () => useSearchStore(updateStatusSelector)

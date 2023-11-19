@@ -1,5 +1,4 @@
-import { dateSortPriority, descendingDirection } from "../../constants"
-import { SortStrategy } from "../../types/sort-strategy"
+import { dateSortPriority, descendingDirection, SortStrategy } from "@/processes/search-products"
 
 export function getDefaultSortStrategy(): SortStrategy {
   return { priority: dateSortPriority, direction: descendingDirection }

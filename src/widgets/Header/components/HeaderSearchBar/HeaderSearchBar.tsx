@@ -2,7 +2,7 @@
 
 import { ChangeEvent, FC, useState } from 'react'
 import { SearchBar } from '@/shared/components/SearchBar'
-import { useSearch } from '@/processes/search-products/client'
+import { useSearch } from '@/features/search'
 import styles from './HeaderSearchBar.module.scss'
 
 interface HeaderSearchBarProps {}

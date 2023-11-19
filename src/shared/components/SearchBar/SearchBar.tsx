@@ -18,8 +18,7 @@ export const SearchBar: FC<SearchBarProps> = ({
   className,
   onChange,
   onEnter,
-  value,
-  ...props
+  value
 }) => {
   const combinedClassName = clsx(styles.SearchBar, className, ...classNames)
 
@@ -37,7 +36,6 @@ export const SearchBar: FC<SearchBarProps> = ({
         value={value}
         onChange={onChange} 
         onKeyDown={keyDownHandler}
-        {...props} 
       />
     </div>
   )

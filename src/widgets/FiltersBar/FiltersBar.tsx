@@ -1,7 +1,7 @@
 'use client'
 
 import { FC } from 'react'
-import { useFilters, useUpdateFilters, useBaseFilters } from '@/processes/search-products/client'
+import { useFilters, useUpdateFilters, useBaseFilters } from '@/features/search'
 import { useRatingFilterDefined } from './hooks/use-rating-filter-defined'
 import { usePriceFilterDefined } from './hooks/use-price-filter-defined'
 import { useBaseFiltersDefined } from './hooks/use-base-filters-defined'

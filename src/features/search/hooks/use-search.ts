@@ -1,27 +1,27 @@
+import { errorSearchStatus, pendingSearchStatus, successSearchStatus } from '../constants'
 import { authenticationClientService } from '@/processes/authentication/client'
-import { mapPageToPaginationQuery } from '../utils/map-page-to-pagination-query'
-import { searchProducts } from '../client/search-products'
+import { mapPageToPaginationQuery } from '@/processes/search-products'
+import { searchProducts } from '@/processes/search-products/client'
 import { HTTPException } from '@/services/http'
 import { Id } from '@/shared/types/Id'
-import { 
-  errorSearchStatus, 
-  pendingSearchStatus, 
-  successSearchStatus, 
-  getDefaultSortStrategy, 
+import {
   useUpdateTextQuery, 
   useUpdateFilters, 
   useResetFilters, 
   useUpdateBaseFilters, 
   useUpdatePage, 
   useUpdateProducts, 
-  useUpdateStatus 
+  useUpdateStatus, 
+  useSortStrategy
 } from '../store'
 
 export function useSearch() {
   const firstPageIndex = 0
+  const sortStrategy = useSortStrategy()
 
   const updateTextQuery = useUpdateTextQuery()
   const updateFilters = useUpdateFilters()
+  const resetFilters = useResetFilters()
   const updateBaseFilters = useUpdateBaseFilters()
   const updateProducts = useUpdateProducts()
   const updatePage = useUpdatePage()
@@ -37,11 +37,11 @@ export function useSearch() {
       textQuery: textQuery,
       filters: {},
       paginationQuery: mapPageToPaginationQuery(firstPageIndex),
-      sortStrategy: getDefaultSortStrategy(),
+      sortStrategy: sortStrategy,
       userId: userId
     }).catch(() => {
       updateTextQuery('')
-      useResetFilters()
+      resetFilters()
       updateProducts([])
       updateBaseFilters(null)
       updatePage(firstPageIndex)
