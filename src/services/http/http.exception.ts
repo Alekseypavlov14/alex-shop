@@ -1,5 +1,5 @@
 export class HTTPException extends Error {
-  constructor(public code: number) {
+  constructor(public readonly code: number) {
     super()
   }
 }

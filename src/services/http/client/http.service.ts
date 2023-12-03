@@ -1,4 +1,6 @@
+import { defaultExceptionCode } from "../constants"
 import { RequestHeaders } from "../types/request-headers"
+import { HTTPException } from "../http.exception"
 import axios, { AxiosRequestConfig } from 'axios'
 
 interface HTTPServiceInterface {
@@ -12,6 +14,15 @@ class HTTPService implements HTTPServiceInterface {
   private readonly requestConfig: AxiosRequestConfig = {
     validateStatus: (status) => status >= 200 && status < 400,
     withCredentials: true
+  }
+
+  constructor() {
+    axios.interceptors.response.use(null, this.interceptResponseException)
+  }
+
+  private interceptResponseException(error: any) {
+    const errorCode = error?.response?.status || defaultExceptionCode
+    throw new HTTPException(errorCode)
   }
 
   async get<Result>(url: string, headers?: RequestHeaders): Promise<Result> {
