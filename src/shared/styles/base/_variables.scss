@@ -14,3 +14,21 @@ $success-color: #3EC728;
 $error-color: #EF3535;
 
 $container-width: 1140px;
+
+// for base components
+$base-lower-layer: -1;
+$base-layer: 0;
+$base-upper-layer: 1;
+
+// for priority components
+$priority-lower-layer: 4;
+$priority-level: 5;
+$priority-upper-layer: 6;
+
+// for widgets (sidebar, header and so on)
+$structure-lower-layer: 9;
+$structure-layer: 10;
+$structure-upper-layer: 11;
+
+// for notifications and shadow layers
+$highest-layer: 20;

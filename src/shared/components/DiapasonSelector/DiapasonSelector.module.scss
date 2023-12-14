@@ -21,11 +21,11 @@
   background-color: $primary-color;
   border: 1px solid $dark-color;
   bottom: -7px;
-  z-index: 1;
+  z-index: $base-upper-layer;
   cursor: pointer;
 
   &[data-indicator-active] {
-    z-index: 2;
+    z-index: calc($base-upper-layer + 1);
   }
 
   &.MinIndicator {
