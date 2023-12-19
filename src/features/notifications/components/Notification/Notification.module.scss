@@ -1,0 +1,36 @@
+.Notification {
+  padding: 12px;
+  padding-right: 14px;
+  border-radius: 12px;
+  color: #fff;
+  @include headline-5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.2);
+  animation-name: appear;
+  animation-duration: 0.3s;
+}
+
+@keyframes appear {
+  0% {
+    transform: translateY(-8px);
+  } 
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.InfoNotificationModifier {
+  background-color: #0288d1;
+}
+.SuccessNotificationModifier {
+  background-color: #2e7d32;
+}
+.ErrorNotificationModifier {
+  background-color: #d32f2f;
+}
+.WarningNotificationModifier {
+  background-color: #ed9302;
+}
