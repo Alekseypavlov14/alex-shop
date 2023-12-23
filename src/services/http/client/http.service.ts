@@ -22,7 +22,7 @@ class HTTPService implements HTTPServiceInterface {
 
   private interceptResponseException(error: any) {
     const errorCode = error?.response?.status || defaultExceptionCode
-    throw new HTTPException(errorCode)
+    return Promise.reject(new HTTPException(errorCode))
   }
 
   async get<Result>(url: string, headers?: RequestHeaders): Promise<Result> {
