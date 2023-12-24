@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { pageUrls } from '@/configs/pages-urls'
 
 export interface NavbarLink {
   href: string
@@ -6,6 +7,6 @@ export interface NavbarLink {
 }
 
 export const navbarLinks: NavbarLink[] = [
-  { href: '/search', content: 'Products' },
-  { href: '/blog', content: 'Blog' },
+  { href: pageUrls.searchPage, content: 'Products' },
+  { href: pageUrls.blogPage, content: 'Blog' },
 ]

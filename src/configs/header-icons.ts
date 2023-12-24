@@ -1,3 +1,4 @@
+import { pageUrls } from '@/configs/pages-urls'
 import heartIcon from '@/shared/icons/heart-outlined.svg'
 import cartIcon from '@/shared/icons/cart.svg'
 
@@ -7,6 +8,6 @@ interface HeaderIcon {
 }
 
 export const headerIcons: HeaderIcon[] = [
-  { href: '/favorite', icon: heartIcon },
-  { href: '/cart', icon: cartIcon }
+  { href: pageUrls.favoritesPage, icon: heartIcon },
+  { href: pageUrls.cartPage, icon: cartIcon }
 ]
