@@ -26,23 +26,19 @@ class HTTPService implements HTTPServiceInterface {
   }
 
   async get<Result>(url: string, headers?: RequestHeaders): Promise<Result> {
-    const response = await axios.get<Result>(url, this.generateRequestConfig(headers))
-    return response.data
+    return await axios.get<Result>(url, this.generateRequestConfig(headers)).then(res => res.data)
   }
 
   async post<Body, Result>(url: string, body: Body, headers?: RequestHeaders): Promise<Result> {
-    const response = await axios.post<Result>(url, body, this.generateRequestConfig(headers))
-    return response.data
+    return await axios.post<Result>(url, body, this.generateRequestConfig(headers)).then(res => res.data)
   }
 
   async put<Body, Result>(url: string, body: Body, headers?: RequestHeaders): Promise<Result> {
-    const response = await axios.put<Result>(url, body, this.generateRequestConfig(headers))
-    return response.data
+    return await axios.put<Result>(url, body, this.generateRequestConfig(headers)).then(res => res.data)
   }
 
   async delete<Result>(url: string, headers?: RequestHeaders): Promise<Result> {
-    const response = await axios.delete<Result>(url, this.generateRequestConfig(headers))
-    return response.data
+    return await axios.delete<Result>(url, this.generateRequestConfig(headers)).then(res => res.data)
   }
 
   private generateRequestConfig(headers: RequestHeaders | undefined): AxiosRequestConfig {
