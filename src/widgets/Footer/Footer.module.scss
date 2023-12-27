@@ -1,0 +1,27 @@
+.Footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2px;
+  padding-bottom: 40px;
+}
+
+.FooterSectionTitle {
+  @include headline-4;
+}
+
+.FooterSectionContent {
+  margin-top: 16px;
+}
+
+.FooterSectionContentRow {
+  @include headline-5;
+  color: $dark-color;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.FooterSectionAnchor { 
+  color: $dark-color;
+}
