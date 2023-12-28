@@ -1,4 +1,5 @@
 import { NotificationContainer } from '@/features/notifications'
+import { StructureLayout } from '@/layouts/StructureLayout'
 import './global.scss'
 
 export const metadata = {
@@ -16,7 +17,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <NotificationContainer />
-        {children}
+
+        <StructureLayout>
+          {children}
+        </StructureLayout>
       </body>
     </html>
   )
