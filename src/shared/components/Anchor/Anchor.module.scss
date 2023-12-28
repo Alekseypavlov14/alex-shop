@@ -1,6 +1,8 @@
-.Anchor {
-  font-size: inherit;
-  font-weight: inherit;
-  color: $primary-color;
-  text-decoration: none;
+@layer components {
+  .Anchor {
+    font-size: inherit;
+    font-weight: inherit;
+    color: $primary-color;
+    text-decoration: none;
+  }
 }

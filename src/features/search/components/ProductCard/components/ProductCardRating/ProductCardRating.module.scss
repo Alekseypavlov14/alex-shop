@@ -1,17 +1,19 @@
-.ProductCardRating {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-
-.ProductCardRatingStars {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.RatingsAmount {
-  @include headline-6;
-  color: $grey-600;
+@layer components {
+  .ProductCardRating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
+  .ProductCardRatingStars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .RatingsAmount {
+    @include headline-6;
+    color: $grey-600;
+  }
 }

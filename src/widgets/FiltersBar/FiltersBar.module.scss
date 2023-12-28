@@ -24,6 +24,8 @@
   @include headline-3;
 }
 
-.DiapasonSelector {
-  width: 100%;
+@layer variants {
+  .DiapasonSelector {
+    width: 100%;
+  }
 }

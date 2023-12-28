@@ -19,21 +19,23 @@
   --font-family: 'Nunito';
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  height: 100%;
-  width: 100%;
-}
-
-body {
-  height: 1px;
-  min-height: 100%;
-  width: 100%;
-  font-size: 14px;
-  font-family: 'Nunito';
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    height: 100%;
+    width: 100%;
+  }
+  
+  body {
+    height: 1px;
+    min-height: 100%;
+    width: 100%;
+    font-size: 14px;
+    font-family: 'Nunito';
+  }
 }

@@ -4,10 +4,12 @@
   gap: 32px;
 }
 
-.NavLink {
-  color: $dark-color;
-  
-  &::after {
-    display: none;
+@layer variants {
+  .NavLink {
+    color: $dark-color;
+    
+    &::after {
+      display: none;
+    }
   }
 }

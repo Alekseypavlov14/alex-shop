@@ -1,5 +1,7 @@
-.Wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+@layer base {
+  .Wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }

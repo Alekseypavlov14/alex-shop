@@ -1,4 +1,6 @@
-.Main {
-  background-color: #F2F2F7;
-  flex: 1 1 auto;
+@layer base {
+  .Main {
+    background-color: #F2F2F7;
+    flex: 1 1 auto;
+  }
 }

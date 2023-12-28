@@ -2,8 +2,10 @@
   display: flex;
   align-items: center;
   gap: 24px;
+}
 
-  & > * {
+@layer variants {
+  .Icon {
     cursor: pointer;
   }
 }

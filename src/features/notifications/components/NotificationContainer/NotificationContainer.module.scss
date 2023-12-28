@@ -1,8 +1,10 @@
-.NotificationContainer {
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 320px;
-  z-index: $highest-layer;
+@layer components {
+  .NotificationContainer {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 320px;
+    z-index: $highest-layer;
+  }
 }

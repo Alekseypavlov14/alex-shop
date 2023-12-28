@@ -10,7 +10,7 @@ export const Icons: FC<IconsProps> = () => {
   return (
     <div className={styles.Icons}>
       {headerIcons.map(icon => (
-        <Link href={icon.href} key={icon.href}>
+        <Link className={styles.Icon} href={icon.href} key={icon.href}>
           <Image src={icon.icon} alt='' />
         </Link>
       ))}

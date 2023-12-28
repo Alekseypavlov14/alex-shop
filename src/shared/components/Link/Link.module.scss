@@ -1,20 +1,22 @@
-.Link {
-  color: $primary-color;
-  text-decoration: none;
-  position: relative;
-  @include headline-5;
+@layer components {
+  .Link {
+    color: $primary-color;
+    text-decoration: none;
+    position: relative;
+    @include headline-5;
 
-  &::after {
-    content: '';
-    background-color: currentColor;
-    width: 100%;
-    height: 1px;
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-  }
+    &::after {
+      content: '';
+      background-color: currentColor;
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+    }
 
-  &:visited {
-    color: currentColor;
+    &:visited {
+      color: currentColor;
+    }
   }
 }

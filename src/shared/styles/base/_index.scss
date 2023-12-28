@@ -1,2 +1,4 @@
 @forward '/src/shared/styles/base/fonts';
 @forward '/src/shared/styles/base/variables';
+
+@layer base, components, variants;

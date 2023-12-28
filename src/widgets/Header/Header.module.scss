@@ -3,9 +3,11 @@
   height: 100px;
 }
 
-.Container {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+@layer variants {  
+  .Container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

@@ -27,14 +27,16 @@
   margin-bottom: 4px;
 }
 
-.Input {
-  border-color: #fff;
-  width: 100%;
-}
-
-.Button {
-  width: 100%;
-  margin-top: 30px;
+@layer variants {
+  .Input {
+    border-color: #fff;
+    width: 100%;
+  }
+  
+  .Button {
+    width: 100%;
+    margin-top: 30px;
+  }
 }
 
 .Separator {
@@ -69,6 +71,8 @@
   justify-content: center;
 }
 
-.Alternative {
-  color: #fff;
+@layer variants {
+  .Alternative {
+    color: #fff;
+  }
 }

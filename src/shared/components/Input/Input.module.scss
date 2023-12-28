@@ -1,17 +1,19 @@
-.Input {
-  width: 240px;
-  height: 34px;
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  @include headline-5;
-  background-color: #fff;
-  border: 1px solid $primary-color;
-  border-radius: 6px;
-  outline: none;
-
-  &:disabled {
-    border-color: $grey-400;
-    color: $grey-400;
+@layer components {
+  .Input {
+    width: 240px;
+    height: 34px;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    @include headline-5;
+    background-color: #fff;
+    border: 1px solid $primary-color;
+    border-radius: 6px;
+    outline: none;
+    
+    &:disabled {
+      border-color: $grey-400;
+      color: $grey-400;
+    }
   }
 }

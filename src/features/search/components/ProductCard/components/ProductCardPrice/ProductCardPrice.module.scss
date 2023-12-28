@@ -1,23 +1,25 @@
-.ProductCardPrice {
-  padding: 0px 20px;
-}
-
-.OldPrice {
-  @include headline-6;
-  color: $grey-400;
-  text-decoration: line-through;
-}
-
-.CurrentPrice {
-  @include headline-4;
-  color: $error-color;
-}
-
-.OldPricePlaceholder {
-  @include headline-6;
-}
-
-.Price {
-  @include headline-4;
-  color: $dark-color;
+@layer components {
+  .ProductCardPrice {
+    padding: 0px 20px;
+  }
+  
+  .OldPrice {
+    @include headline-6;
+    color: $grey-400;
+    text-decoration: line-through;
+  }
+  
+  .CurrentPrice {
+    @include headline-4;
+    color: $error-color;
+  }
+  
+  .OldPricePlaceholder {
+    @include headline-6;
+  }
+  
+  .Price {
+    @include headline-4;
+    color: $dark-color;
+  }
 }

@@ -1,4 +1,6 @@
-.HeaderSearchBar {
-  flex: 1 1 auto;
-  max-width: 500px;
+@layer variants {
+  .HeaderSearchBar {
+    flex: 1 1 auto;
+    max-width: 500px;
+  }
 }

@@ -22,6 +22,8 @@
   }
 }
 
-.FooterSectionAnchor { 
-  color: $dark-color;
+@layer variants { 
+  .FooterSectionAnchor { 
+    color: $dark-color;
+  }
 }
