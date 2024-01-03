@@ -1,7 +1,9 @@
+import { HomePageBanner } from '@/widgets/HomePageBanner'
+
 export default function Page() {
   return (
     <>
-      Home page
+      <HomePageBanner />
     </>
   )
 }
